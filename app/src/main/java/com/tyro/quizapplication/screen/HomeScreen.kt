@@ -1,5 +1,8 @@
 package com.tyro.quizapplication.screen
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.rememberPagerState
@@ -58,27 +62,28 @@ fun HomeScreen(){
         },
         content = { innerPadding ->
 
-        Column(modifier = Modifier
+        LazyColumn(modifier = Modifier
             .padding(innerPadding).background(colorResource(id = R.color.blue_100).copy(alpha = 0.5f))
             .fillMaxSize()) {
+            item() {
+                Column(modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)) {
 
-            Column(modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    HorizontalPager(
+                        state = pagerState,
+                        contentPadding = PaddingValues(horizontal = 16.dp),
+                        pageSpacing = 1.dp,
+                        flingBehavior = PagerDefaults.flingBehavior(state = pagerState),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                            item ->
+                        QuizSubjectItem()
 
-                HorizontalPager(
-                    state = pagerState,
-                    contentPadding = PaddingValues(horizontal = 16.dp),
-                    pageSpacing = 1.dp,
-                    flingBehavior = PagerDefaults.flingBehavior(state = pagerState),
-                    modifier = Modifier.fillMaxWidth().weight(1f)
-                ) {
-                    item ->
-                    QuizSubjectItem()
+                    }
 
+                    ScoreHistoryCard()
+                    AccountProfileCard()
                 }
-
-                ScoreHistoryCard()
-                AccountProfileCard()
             }
         }
         }

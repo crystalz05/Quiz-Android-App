@@ -1,5 +1,6 @@
 package com.tyro.quizapplication.screen
 
+import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,22 +38,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.viewmodel.AuthViewModel
+import com.tyro.quizapplication.viewmodel.QuizAppViewModel
 
 
 @Composable
-fun RegisterScreen(){
+fun RegisterScreen(viewModel: QuizAppViewModel,
+                   authViewModel: AuthViewModel,
+                   onNavToLogin:()->Unit){
 
 
     val context = LocalContext.current
-
-    val surname = remember { mutableStateOf("") }
-    val firstName = remember { mutableStateOf("") }
-    val username = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
-    val confirmPassword = remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
-
-
 
     Scaffold() {innerPadding ->
         Column(modifier = Modifier.fillMaxSize().padding(innerPadding).padding(40.dp),
@@ -65,16 +61,16 @@ fun RegisterScreen(){
                 Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = surname.value,
-                    onValueChange = {surname.value = it},
+                    value = viewModel.surname,
+                    onValueChange = {viewModel.surname = it},
                     leadingIcon = {Icon(painter = painterResource(id = R.drawable.baseline_drive_file_rename_outline_24), contentDescription = "")},
                     placeholder = { Text("Surname") }
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = firstName.value,
-                    onValueChange = {firstName.value = it},
+                    value = viewModel.firstName,
+                    onValueChange = {viewModel.firstName = it},
                     leadingIcon = {Icon(painter = painterResource(id = R.drawable.baseline_drive_file_rename_outline_24), contentDescription = "")},
                     placeholder = { Text("First Name") }
                 )
@@ -82,8 +78,8 @@ fun RegisterScreen(){
                 Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = username.value,
-                    onValueChange = {username.value = it},
+                    value = viewModel.email,
+                    onValueChange = {viewModel.email = it},
                     leadingIcon = {Icon(painter = painterResource(id = R.drawable.baseline_person_24), contentDescription = "")},
                     placeholder = { Text("Email") }
                 )
@@ -91,14 +87,14 @@ fun RegisterScreen(){
                 Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = password.value,
-                    onValueChange = {password.value = it},
+                    value = viewModel.password,
+                    onValueChange = {viewModel.password = it},
                     leadingIcon = {Icon(painter = painterResource(id = R.drawable.baseline_no_encryption_24), contentDescription = "")},
                     placeholder = { Text("Password") },
-                    visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if(viewModel.passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
-                        IconButton(onClick = {passwordVisible = !passwordVisible}) {
-                            Icon(painter = if(passwordVisible) painterResource(id = R.drawable.baseline_visibility_off_24) else
+                        IconButton(onClick = {viewModel.passwordVisible = !viewModel.passwordVisible}) {
+                            Icon(painter = if(viewModel.passwordVisible) painterResource(id = R.drawable.baseline_visibility_off_24) else
                                 painterResource(id = R.drawable.baseline_visibility_24)
                                 ,
                                 contentDescription = ""
@@ -111,24 +107,37 @@ fun RegisterScreen(){
                 Spacer(modifier = Modifier.height(10.dp))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = confirmPassword.value,
-                    onValueChange = {confirmPassword.value = it},
+                    value = viewModel.confirmPassword,
+                    onValueChange = {viewModel.confirmPassword = it},
                     leadingIcon = {Icon(painter = painterResource(id = R.drawable.baseline_no_encryption_24), contentDescription = "")},
                     placeholder = { Text("Confirm Password") },
-                    visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if(viewModel.passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 )
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Button(onClick = {
 
-                    if(surname.value.isEmpty()||firstName.value.isEmpty()||username.value.isEmpty()||password.value.isEmpty()||confirmPassword.value.isEmpty()){
+                    if(viewModel.surname.isEmpty()||
+                        viewModel.firstName.isEmpty()||
+                        viewModel.email.isEmpty()||
+                        viewModel.password.isEmpty()||
+                        viewModel.confirmPassword.isEmpty()){
                         Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_LONG).show()
+                    }else if(!viewModel.password.equals(viewModel.confirmPassword)){
+                        Toast.makeText(context, "passwords do not match", Toast.LENGTH_LONG).show()
+                    }else{
+
+                        authViewModel.signUp(viewModel.email, viewModel.password, viewModel.surname, viewModel.firstName)
+//                        viewModel.email = ""
+//                        viewModel.password = ""
+//                        viewModel.surname = ""
+//                        viewModel.firstName = ""
                     }
 
                 }, shape = RoundedCornerShape(4.dp), modifier = Modifier.fillMaxWidth()) {
                     Text("Register")
                 }
-                TextButton(onClick = {}) {
+                TextButton(onClick = {onNavToLogin()}) {
                     Text("Already have an account, Login")
                 }
 
@@ -142,8 +151,9 @@ fun RegisterScreen(){
 }
 
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview(){
-    RegisterScreen()
+    RegisterScreen(viewModel = QuizAppViewModel(), authViewModel = AuthViewModel(), {})
 }

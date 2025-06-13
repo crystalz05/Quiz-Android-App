@@ -68,13 +68,20 @@ fun ScoreHistoryCard() {
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
                     historyItem.forEach{ history ->
-                        Column(modifier = Modifier.background(color = Color.LightGray.copy(alpha = 0.3f),
-                            shape = RoundedCornerShape(8.dp)).fillMaxWidth().padding(8.dp),
-                            verticalArrangement = Arrangement.Center
+                            Column(modifier = Modifier.background(color = Color.LightGray.copy(alpha = 0.3f),
+                                shape = RoundedCornerShape(8.dp)).fillMaxWidth().padding(8.dp),
+                                verticalArrangement = Arrangement.Center
                             ) {
-                            Text("Mathematics", fontWeight = FontWeight.SemiBold)
-                            Text("2h ago", fontSize = 12.sp, color = Color.Gray)
-                        }
+                                Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                    Column {
+                                        Text("Mathematics", fontWeight = FontWeight.SemiBold)
+                                        Text("2h ago", fontSize = 12.sp, color = Color.Gray)
+                                    }
+                                    Text("85%", fontWeight = FontWeight.SemiBold, fontSize = 12.sp)
+                                }
+                            }
                     }
                 }
                 Column(modifier = Modifier.weight(1f).fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {

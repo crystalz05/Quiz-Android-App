@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 
 class QuizAppViewModel(): ViewModel() {
 
-    var username by mutableStateOf("")
     var password by mutableStateOf("")
     var confirmPassword by mutableStateOf("")
     var surname by mutableStateOf("")

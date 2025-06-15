@@ -32,6 +32,7 @@ class UserRepository(
             quizHistory = emptyList()
         )
 
+        fireBaseUser.sendEmailVerification()
         firestore.collection("users").document(user.uid).set(user).await()
 
         Result.success(true)
@@ -45,10 +46,30 @@ class UserRepository(
         password: String
     ): Result<Boolean> = try{
 
-        auth.signInWithEmailAndPassword(email, password).await()
-        Result.success(true)
+        val result = auth.signInWithEmailAndPassword(email, password).await()
+        val fireBaseuser = result.user
+
+        if(fireBaseuser != null && fireBaseuser.isEmailVerified){
+            Result.success(true)
+        }else{
+            Result.failure(Exception("Email is not verified. Please check your inbox"))
+        }
     }catch (e: Exception){
         Result.failure(e)
     }
 
+    suspend fun checkEmailVerified(): Result<Boolean> {
+        return try {
+            val user = auth.currentUser?: return Result.failure(Exception("No Logged in user"))
+            user.reload().await()
+
+            if(user.isEmailVerified){
+                Result.success(true)
+            }else{
+                Result.failure(Exception("Email not yet verified"))
+            }
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
 }

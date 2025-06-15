@@ -33,7 +33,10 @@ fun Navigation(viewModel: QuizAppViewModel = viewModel<QuizAppViewModel>(),
         ){
 
         composable(Screen.LoginScreen.route){
-            LoginScreen(viewModel, onNavToRegister = {
+            LoginScreen(viewModel,
+                authViewModel,
+                onNavToHomeScreen = {navHostController.navigate(Screen.HomeScreen.route)},
+                onNavToRegister = {
                 navHostController.navigate(Screen.RegisterScreen.route)
             })
         }
@@ -49,6 +52,7 @@ fun Navigation(viewModel: QuizAppViewModel = viewModel<QuizAppViewModel>(),
         composable(Screen.RegisterScreen.route){
             RegisterScreen(viewModel,
                 authViewModel,
+                onNavToHomeScreen = {navHostController.navigate(Screen.HomeScreen.route)},
                 onNavToLogin = {
                     navHostController.navigate(Screen.LoginScreen.route)
                 }

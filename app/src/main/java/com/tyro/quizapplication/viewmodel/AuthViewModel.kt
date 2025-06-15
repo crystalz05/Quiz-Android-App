@@ -16,6 +16,9 @@ class AuthViewModel: ViewModel() {
     private val _authResult = MutableLiveData<Result<Boolean>?>()
     val authResult:LiveData<Result<Boolean>?> get() = _authResult
 
+    private val _emailVerified = MutableLiveData<Result<Boolean>?>()
+    val emailVerified: LiveData<Result<Boolean>?> get() = _emailVerified
+
     init{
         _userRepository = UserRepository(
             FirebaseAuth.getInstance(),
@@ -34,5 +37,13 @@ class AuthViewModel: ViewModel() {
             _authResult.value = _userRepository.signIn(email, password)
         }
     }
+
+    fun checkEmailVerification(){
+        viewModelScope.launch {
+            _emailVerified.value = _userRepository.checkEmailVerified()
+        }
+    }
+
+
 
 }

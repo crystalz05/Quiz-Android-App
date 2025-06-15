@@ -13,9 +13,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            QuizApplicationTheme {
+            QuizApplicationTheme {
             Navigation()
-//            }
+            }
         }
     }
 }

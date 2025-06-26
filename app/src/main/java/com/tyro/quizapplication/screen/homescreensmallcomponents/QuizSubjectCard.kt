@@ -19,6 +19,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,12 +30,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.navigation.Screen
 
 @Composable
-fun QuizSubjectItem(){
+fun QuizSubjectItem(
+    navController: NavController
+){
 
     val difficulty = listOf("Easy", "Medium", "Hard")
     val selectedDifficulty = remember { mutableStateOf("Easy") }
@@ -42,25 +48,26 @@ fun QuizSubjectItem(){
 
     Card(
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(width = 1.dp, Color.LightGray.copy(alpha = 0.7f)),
+        border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)),
         elevation = CardDefaults.cardElevation(),
         modifier = Modifier
             .fillMaxWidth(0.9f)
             .height(300.dp)
     ) {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-            .background(Color.White.copy(alpha = 0.8f)),
+            .background(MaterialTheme.colorScheme.surface),
         ) {
             Column(modifier = Modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Column(modifier = Modifier.fillMaxWidth().weight(1f)
-                    .background(color = colorResource(id = R.color.blue_100).copy(alpha = 0.5f), shape = RoundedCornerShape(16.dp)),
+                    .background(color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(16.dp)),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text("Mathematics", fontWeight = FontWeight.Medium, fontSize = 24.sp)
-                    Text("20 Questions quiz")
+                    Text("Mathematics", fontWeight = FontWeight.Medium, fontSize = 24.sp,
+                        color = MaterialTheme.colorScheme.onSecondary)
+                    Text("20 Questions quiz", color = MaterialTheme.colorScheme.onSecondary)
 
                 }
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -68,23 +75,27 @@ fun QuizSubjectItem(){
                         if(selectedDifficulty.value == level){
                             Button(modifier = Modifier.wrapContentWidth().fillMaxWidth().weight(1f), onClick = {
                             }, shape = RoundedCornerShape(5.dp) ) {
-                                Text(level, color = Color.White, maxLines = 1)
+                                Text(level, color = MaterialTheme.colorScheme.onPrimary, maxLines = 1)
                             }
                         }else{
-                            OutlinedButton(modifier = Modifier.fillMaxWidth().weight(1f), onClick = {
+                            OutlinedButton(modifier = Modifier.fillMaxWidth().weight(1f),
+                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+                                onClick = {
                                 selectedDifficulty.value = level
                             }, shape = RoundedCornerShape(5.dp) ) {
-                                Text(level, maxLines = 1)
+                                Text(level, maxLines = 1, color = MaterialTheme.colorScheme.onPrimaryContainer)
                             }
                         }
                     }
                 }
                 Button(modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(5.dp),
-                    onClick = {}, colors = ButtonDefaults.buttonColors(containerColor = Color.Black)) {
-                    Icon(imageVector = Icons.Outlined.PlayArrow, contentDescription = "")
+                    onClick = {
+                        navController.navigate(Screen.QuizScreen.route)
+                    }, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)) {
+                    Icon(imageVector = Icons.Outlined.PlayArrow, contentDescription = "", tint = MaterialTheme.colorScheme.onPrimary)
 
-                    Text("Start Quiz")
+                    Text("Start Quiz", color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         }

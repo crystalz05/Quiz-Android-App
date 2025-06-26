@@ -1,6 +1,5 @@
 package com.tyro.quizapplication.screen
 
-import android.window.SplashScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,36 +19,55 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.navigation.Screen
+import com.tyro.quizapplication.viewmodel.AuthViewModel
+import kotlinx.coroutines.tasks.await
 
 @Composable
-fun SplashScreen(){
-    val scope = rememberCoroutineScope()
-
+fun SplashScreen(authViewModel: AuthViewModel, onSplashFinished: (String) -> Unit) {
     LaunchedEffect(Unit) {
-        delay(3000)
-
-
-    }
-
-    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.secondary), contentAlignment = Alignment.Center)
-    {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "",
-                tint = Color.White,
-                modifier = Modifier.size(100.dp))
+        delay(4000L) // Give time for Firebase Auth + Network
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            user.reload().await()
+            if (user.isEmailVerified) {
+                authViewModel.fetchCurrentUser()
+                onSplashFinished(Screen.HomeScreen.route)
+            } else {
+                onSplashFinished(Screen.LoginScreen.route)
+            }
+        } else {
+            onSplashFinished(Screen.LoginScreen.route)
         }
+    }
 
-        Spacer(modifier = Modifier.height(25.dp))
-        CircularProgressIndicator(color = Color.White)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surface),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                contentDescription = "",
+                tint = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.size(100.dp)
+            )
+
+            Spacer(modifier = Modifier.height(25.dp))
+
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
+        }
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun SplashScreenPreview(){
-    SplashScreen()
-}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun SplashScreenPreview(){
+//    SplashScreen({})
+//}

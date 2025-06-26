@@ -1,0 +1,91 @@
+id,questionText,difficulty,type,options,correctAnswerIndex
+cq1,What is the primary function of a CPU?,easy,computer,"[""Process data"", ""Store data"", ""Display data"", ""Connect to the internet""]",0
+cq2,Which of these is an operating system?,easy,computer,"[""Microsoft Word"", ""Windows"", ""Linux Mint"", ""Google Chrome""]",1
+cq3,What does RAM stand for?,easy,computer,"[""Random Access Memory"", ""Read Always Memory"", ""Run Application Module"", ""Remote Access Monitor""]",0
+cq4,Which file extension is used for Python scripts?,easy,computer,"["".java"", "".py"", "".cpp"", "".html""]",1
+cq5,What is a bit?,easy,computer,"[""A type of software"", ""A binary digit"", ""A storage device"", ""A programming language""]",1
+cq6,Which key is used to copy selected text?,easy,computer,"[""Ctrl+V"", ""Ctrl+C"", ""Ctrl+X"", ""Ctrl+Z""]",1
+cq7,What is a web browser?,easy,computer,"[""A programming language"", ""A search engine"", ""Software to access the internet"", ""A type of hardware""]",2
+cq8,Which of these is a peripheral device?,easy,computer,"[""CPU"", ""Mouse"", ""RAM"", ""Hard Drive""]",1
+cq9,What does USB stand for?,easy,computer,"[""Universal Serial Bus"", ""Unique System Buffer"", ""Ultra Speed Backup"", ""User Service Block""]",0
+cq10,What is the purpose of a firewall?,easy,computer,"[""Speed up internet"", ""Protect against unauthorized access"", ""Store files"", ""Run applications""]",1
+cq11,Which of these is a cloud storage service?,easy,computer,"[""Google Drive"", ""Microsoft Excel"", ""Adobe Photoshop"", ""Windows Explorer""]",0
+cq12,What is the common term for unwanted email?,easy,computer,"[""Phishing"", ""Spam"", ""Thread"", ""Draft""]",1
+cq13,Which device is used to convert digital signals to analog signal?,easy,computer,"[""Router"", ""Modem"", ""Switch"", ""Hub""]",1
+cq14,What is the file extension for a Word document?,easy,computer,"["".docx"", "".pdf"", "".txt"", "".jpg""]",0
+cq15,Which of these is an input device?,easy,computer,"[""Monitor"", ""Speakers"", ""Keyboard"", ""Printer""]",2
+cq16,What does GUI stand for?,easy,computer,"[""General User Input"", ""Graphical User Interface"", ""Global Unit Identifier"", ""Guided Utility Interface""]",0
+cq17,What is the purpose of an IP address?,easy,computer,"[""Identify a device on a network"", ""Store data"", ""Run software"", ""Encrypt files""]",0
+cq18,Which of these is a programming language?,easy,computer,"[""HTML"", ""SQL"", ""JSON"", ""YAML""]",1
+cq19,What is a byte?,easy,computer,"[""8 bits"", ""1024 bits"", ""4 bits"", ""16 bits""]",0
+cq20,Which key combination locks a computer screen in Windows?,easy,computer,"[""Ctrl+Alt+Del"", ""Win+L"", ""Alt+F4"", ""Shift+Esc""]",1
+cq21,What is the function of a spreadsheet software?,easy,computer,"[""Edit images"", ""Manage data in tables"", ""Write code"", ""Play videos""]",1
+cq22,Which of these is a type of computer memory that is non-volatile?,easy,computer,"[""RAM"", ""Cache"", ""ROM"", ""Virtual Memory""]",2
+cq23,What does HTTP stand for?,easy,computer,"[""HyperText Transfer Protocol"", ""High Throughput Terminal"", ""Hybrid Text Processor"", ""Host Terminal Protocol""]",0
+cq24,Which of these is a type of software license?,easy,computer,"[""Open Source"", ""Closed Source"", ""Proprietary"", ""All of the above""]",0
+cq25,What is the purpose of a GPU?,easy,computer,"[""Run the operating system"", ""Process graphics"", ""Store data"", ""Connect to networks""]",1
+cq26,Which of these is a database management system?,easy,computer,"[""MySQL"", ""Apache"", ""Notepad"", ""Photoshop""]",0
+cq27,What is a common format for compressed files?,easy,computer,"["".zip"", "".exe"", "".doc"", "".mp3""]",0
+cq28,Which device is used to connect networks?,easy,computer,"[""Router"", ""Monitor"", ""Keyboard"", ""Speaker""]",0
+cq29,What is the purpose of a text editor?,easy,computer,"[""Edit code or plain text"", ""Play music"", ""Design graphics"", ""Manage databases""]",0
+cq30,Which of these is a type of computer port?,easy,computer,"[""USB"", ""CPU"", ""RAM"", ""SSD""]",0
+cq31,What is time complexity of a binary search algorithm?,medium,computer,"[""O(n)"", ""O(log n)"", ""O(n^2)"", ""O(1)""]",1
+cq32,Which data structure uses LIFO principle?,medium,computer,"[""Queue"", ""Stack"", ""Array"", ""Linked List""]",1
+cq33,What is the purpose of a DNS server?,medium,computer,"[""Store files"", ""Translate domain names to IP addresses"", ""Encrypt data"", ""Run applications""]",1
+cq34,Which of these is a version control system?,medium,computer,"[""Git"", ""Jenkins"", ""Docker"", ""Kubernetes""]",0
+cq35,What is the difference between HTTP and HTTPS?,medium,computer,"[""HTTPS is faster"", ""HTTPS uses encryption"", ""HTTP is more secure"", ""HTTP uses SSL""]",1
+cq36,Which sorting algorithm has the best average-case time complexity?,medium,computer,"[""Bubble Sort"", ""Quick Sort"", ""Selection Sort"", ""Insertion Sort""]",1
+cq37,What is a primary key in a database?,medium,computer,"[""A backup key"", ""Uniquely identifies a record"", ""A foreign key"", ""A default value""]",1
+cq38,Which protocol is used for secure file transfer?,medium,computer,"[""FTP"", ""SFTP"", ""HTTP"", ""Telnet""]",1
+cq39,What is the purpose of a virtual machine?,medium,computer,"[""Run multiple OS on one computer"", ""Increase internet speed"", ""Store data"", ""Edit code""]",0
+cq40,Which of these is a NoSQL database?,medium,computer,"[""MySQL"", ""PostgreSQL"", ""MongoDB"", ""Oracle""]",2
+cq41,What is a deadlock in operating systems?,medium,computer,"[""A fast process"", ""A process waiting indefinitely"", ""A crashed program"", ""A secure thread""]",1
+cq42,Which layer of the OSI model handles data routing?,medium,computer,"[""Physical"", ""Data Link"", ""Network"", ""Application""]",2
+cq43,What is the purpose of a compiler?,medium,computer,"[""Run code"", ""Translate code to machine language"", ""Debug code"", ""Store code""]",1
+cq44,Which of these is a client-side scripting language?,medium,computer,"[""Python"", ""PHP"", ""JavaScript"", ""SQL""]",2
+cq45,What is a foreign key in a database?,medium,computer,"[""A unique identifier"", ""A key linking tables"", ""A default value"", ""A backup key""]",1
+cq46,Which algorithm is used for shortest path in graphs?,medium,computer,"[""Kruskal’s"", ""Bellman-Ford"", ""Prim’s"", ""DFS""]",1
+cq47,What is the purpose of a load balancer?,medium,computer,"[""Store data"", ""Distribute network traffic"", ""Encrypt data"", ""Run applications""]",1
+cq48,Which of these is a design pattern?,medium,computer,"[""Singleton"", ""Waterfall"", ""Agile"", ""Scrum""]",0
+cq49,What is a subnet mask used for?,medium,computer,"[""Encrypt data"", ""Divide networks"", ""Speed up connections"", ""Store IPs""]",1
+cq50,Which of these is a type of cyberattack?,medium,computer,"[""SQL Injection"", ""Data Sorting"", ""File Compression"", ""Code Compilation""]",0
+cq51,What is the purpose of a JWT?,medium,computer,"[""Store files"", ""Secure data exchange"", ""Run code"", ""Compress data""]",1
+cq52,Which data structure is used in breadth-first search?,medium,computer,"[""Stack"", ""Queue"", ""Heap"", ""Tree""]",1
+cq53,What is a microservice architecture?,medium,computer,"[""A single app"", ""Small independent services"", ""A large database"", ""A hardware system""]",1
+cq54,Which of these is a container orchestration tool?,medium,computer,"[""Docker"", ""Kubernetes"", ""Apache"", ""Nginx""]",1
+cq55,What is the purpose of a hash function?,medium,computer,"[""Sort data"", ""Map data to fixed-size values"", ""Run code"", ""Store files""]",1
+cq56,Which of these is a relational database operation?,medium,computer,"[""JOIN"", ""DELETE"", ""UPDATE"", ""All of the above""]",3
+cq57,What is a race condition in programming?,medium,computer,"[""A fast thread"", ""Unpredictable behavior due to timing"", ""A secure process"", ""A sorted list""]",1
+cq58,Which protocol is used for email sending?,medium,computer,"[""IMAP"", ""POP3"", ""SMTP"", ""HTTP""]",2
+cq59,What is the purpose of a reverse proxy?,medium,computer,"[""Store data"", ""Route client requests to servers"", ""Run code"", ""Encrypt files""]",1
+cq60,Which of these is a functional programming language?,medium,computer,"[""Java"", ""C++"", ""Haskell"", ""Python""]",2
+cq61,Which data structure uses the FIFO (First In First Out) principle?,hard,computer,"[""Stack"",""Queue"",""Heap"",""Graph""]",1
+cq62,Which algorithm solves the knapsack problem?,hard,computer,"[""Dijkstra’s"", ""Greedy"", ""Dynamic Programming"", ""Kruskal’s""]",2
+cq63,What is a buffer overflow attack?,hard,computer,"[""Data compression"", ""Overwriting memory"", ""File encryption"", ""Network routing""]",1
+cq64,Which of these is a post-quantum cryptography algorithm?,hard,computer,"[""RSA"", ""AES"", ""Lattice-based"", ""MD5""]",2
+cq65,What is the CAP theorem in distributed systems?,hard,computer,"[""All systems are secure"", ""Only two of consistency, availability, partition tolerance"", ""All systems are fast"", ""Data is always encrypted""]",1
+cq66,Which data structure is used in red-black trees?,hard,computer,"[""Array"", ""Linked List"", ""Binary Search Tree"", ""Queue""]",2
+cq67,What is a zero-day exploit?,hard,computer,"[""A patched vulnerability"", ""An unknown vulnerability"", ""A fast attack"", ""A secure protocol""]",1
+cq68,Which algorithm is used for minimum spanning trees?,hard,computer,"[""Dijkstra’s"", ""Prim’s"", ""Bellman-Ford"", ""Floyd-Warshall""]",1
+cq69,What is eventual consistency in databases?,hard,computer,"[""Immediate updates"", ""Delayed updates"", ""Encrypted data"", ""Sorted data""]",1
+cq70,Which of these is a homomorphic encryption technique?,hard,computer,"[""RSA"", ""AES"", ""Paillier"", ""MD5""]",2
+cq71,What is a side-channel attack?,hard,computer,"[""Direct hacking"", ""Exploiting physical implementation"", ""Data sorting"", ""File compression""]",1
+cq72,Which protocol used in blockchain consensus?,hard,computer,"[""HTTP"", ""Proof of Work"", ""SMTP"", ""FTP""]",1
+cq73,What is a CRDT in distributed systems?,hard,computer,"[""A secure protocol"", ""A conflict-free data type"", ""A fast algorithm"", ""A storage device""]",1
+cq74,Which of these is a graph traversal algorithm?,hard,computer,"[""Quick Sort"", ""Bubble Sort"", ""DFS"", ""Merge Sort""]",2
+cq75,What is a man-in-the-middle attack?,hard,computer,"[""Data compression"", ""Intercepting communication"", ""File sorting"", ""Code compilation""]",1
+cq76,Which of these is a quantum computing gate?,hard,computer,"[""AND gate"", ""OR gate"", ""Hadamard gate"", ""NAND gate""]",2
+cq77,What is a Byzantine fault in distributed systems?,hard,computer,"[""A hardware failure"", ""A malicious node"", ""A fast process"", ""A sorted list""]",1
+cq78,Which algorithm is used for string matching?,hard,computer,"[""KMP"", ""Dijkstra’s"", ""Prim’s"", ""Kruskal’s""]",0
+cq79,What is a secure multiparty computation?,hard,computer,"[""Joint computation with private inputs"", ""Data sorting"", ""File compression"", ""Network routing""]",0
+cq80,Which of these is a formal verification method?,hard,computer,"[""Unit testing"", ""Model checking"", ""Integration testing"", ""Stress testing""]",1
+cq81,What is a differential privacy technique?,hard,computer,"[""Data encryption"", ""Adding noise to data"", ""Data sorting"", ""File compression""]",1
+cq82,Which of these is a distributed ledger technology?,hard,computer,"[""SQL"", ""Blockchain"", ""Apache"", ""Nginx""]",1
+cq83,What is a cache coherence problem?,hard,computer,"[""Slow internet"", ""Inconsistent cache data"", ""File encryption"", ""Network routing""]",1
+cq84,Which algorithm is used for network flow optimization?,hard,computer,"[""Ford-Fulkerson"", ""Dijkstra’s"", ""Prim’s"", ""Kruskal’s""]",0
+cq85,What is a trusted execution environment?,hard,computer,"[""A secure hardware area"", ""A fast processor"", ""A large database"", ""A sorted list""]",0
+cq86,Which of these is a machine learning optimization algorithm?,hard,computer,"[""Gradient Descent"", ""Dijkstra’s"", ""Prim’s"", ""Kruskal’s""]",0
+cq87,What is a replay attack in cybersecurity?,hard,computer,"[""Data compression"", ""Reusing captured data"", ""File sorting"", ""Code compilation""]",1
+cq88,Which of these is a type of neural network?,hard,computer,"[""Convolutional"", ""Quick Sort"", ""Bubble Sort"", ""Merge Sort""]",0
+cq89,What is a sharding technique in databases?,hard,computer,"[""Data encryption"", ""Partitioning data"", ""File compression"", ""Network routing""]",1
+cq90,Which of these is a formal language theory concept?,hard,computer,"[""Finite Automata"", ""Quick Sort"", ""Bubble Sort"", ""Merge Sort""]",0

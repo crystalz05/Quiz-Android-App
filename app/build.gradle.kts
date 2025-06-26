@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -42,11 +44,18 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+
+
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-
+    implementation (libs.androidx.biometric)
+    implementation (libs.accompanist.systemuicontroller)
 
 
     implementation(libs.androidx.core.ktx)
@@ -66,6 +75,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.google.firebase.firestore)
+    implementation(libs.androidx.datastore.preferences)
 
 
 }

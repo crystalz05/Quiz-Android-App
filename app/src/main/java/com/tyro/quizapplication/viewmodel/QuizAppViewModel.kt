@@ -15,4 +15,12 @@ class QuizAppViewModel(): ViewModel() {
     var email by mutableStateOf("")
     var passwordVisible by mutableStateOf(false)
 
+
+    fun clearFields() {
+        email = ""
+        password = ""
+        confirmPassword = ""
+        surname = ""
+        firstName = ""
+    }
 }

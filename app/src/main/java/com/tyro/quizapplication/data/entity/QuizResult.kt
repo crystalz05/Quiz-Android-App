@@ -1,5 +1,9 @@
 package com.tyro.quizapplication.data.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+//@Parcelize
 data class QuizResult(
     val userId: String = "",
     val quizId: String = "",
@@ -8,3 +12,4 @@ data class QuizResult(
     val correctAnswers: Int = 0,
     val completedAt: Long = 0L
 )
+//    : Parcelable

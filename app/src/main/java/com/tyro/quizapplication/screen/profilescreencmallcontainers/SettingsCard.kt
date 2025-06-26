@@ -22,11 +22,13 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,16 +44,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.viewmodel.ThemeViewModel
 
 @Composable
-fun SettingsCard(){
+fun SettingsCard(themeViewModel: ThemeViewModel){
+
+    val isDarkTheme by themeViewModel.isDarkTheme.collectAsState()
+    val biometricEnabled = remember { mutableStateOf(false) }
+
     Card(
-        shape = RoundedCornerShape(8.dp), border = BorderStroke(width = 1.dp, color = Color.LightGray.copy(alpha = 0.7f)),
+        shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Box(modifier = Modifier.fillMaxWidth()
-            .background(Color.White).padding(16.dp),
+        Box(modifier = Modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.surface).padding(16.dp),
             contentAlignment = Alignment.Center,
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
@@ -63,10 +69,10 @@ fun SettingsCard(){
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(imageVector = Icons.Outlined.Notifications,
-                            tint = Color.Gray, modifier = Modifier.size(30.dp),
+                            tint =  MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(30.dp),
                             contentDescription = "Notification")
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Notification", fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                        Text("Notification", fontSize = 16.sp, fontWeight = FontWeight.Medium, color =  MaterialTheme.colorScheme.onSurface)
                     }
                     var isChecked by remember { mutableStateOf(false) }
                     Switch(
@@ -86,15 +92,15 @@ fun SettingsCard(){
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(painter = painterResource(id = R.drawable.baseline_dark_mode_24),
-                            tint = Color.Gray, modifier = Modifier.size(30.dp),
+                            tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(30.dp),
                             contentDescription = "Notification")
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Dark Mode", fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                        Text("Dark Mode", fontSize = 16.sp, fontWeight = FontWeight.Medium, color =  MaterialTheme.colorScheme.onSurface)
                     }
-                    var isChecked by remember { mutableStateOf(false) }
+
                     Switch(
-                        checked = isChecked,
-                        onCheckedChange = { isChecked = it },
+                        checked = isDarkTheme,
+                        onCheckedChange = { themeViewModel.toggleTheme() },
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = Color.White,
                             uncheckedThumbColor = Color.Gray,
@@ -105,21 +111,36 @@ fun SettingsCard(){
                         )
                     )
                 }
-                Spacer(modifier = Modifier.height(16.dp))
-                OutlinedButton(onClick = {},
-                    shape = RoundedCornerShape(8.dp), border = BorderStroke(width = 1.dp, color = Color.LightGray),
-                    modifier = Modifier.fillMaxWidth(), content = {
-                    Icon(imageVector = Icons.Outlined.Settings, tint = Color.Black, contentDescription = "advanced settings")
-                        Spacer(Modifier.width(8.dp))
-                    Text("Advanced Settings", fontWeight = FontWeight.Medium, fontSize = 18.sp, color = Color.Black)
-                })
+                Row(modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(painter = painterResource(id = R.drawable.baseline_fingerprint_24),
+                            tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(30.dp),
+                            contentDescription = "Notification")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Enable Biometric", fontSize = 16.sp, fontWeight = FontWeight.Medium, color =  MaterialTheme.colorScheme.onSurface)
+                    }
+
+                    Switch(
+                        checked = biometricEnabled.value,
+                        onCheckedChange = { biometricEnabled.value = it },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            uncheckedThumbColor = Color.Gray,
+                            checkedTrackColor = colorResource(id = R.color.green_700),
+                            uncheckedTrackColor = Color.White,
+                            checkedBorderColor = colorResource(id = R.color.green_700),
+                            uncheckedBorderColor = Color.Gray
+                        )
+                    )
+                }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SettingsCardPreview(){
-    SettingsCard()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SettingsCardPreview(){
+//    SettingsCard()
+//}

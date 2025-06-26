@@ -13,48 +13,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF90CAF9),
-    onPrimary = Color.Black,
-    primaryContainer = Color(0xFFBBDEFB),             // From light
-    onPrimaryContainer = Color(0xFF0D47A1),           // From light
-
-    secondary = Color(0xFFB0BEC5),
-    onSecondary = Color.Black,
-    secondaryContainer = Color(0xFFCFD8DC),           // From light
-    onSecondaryContainer = Color(0xFF263238),         // From light
-
-    tertiary = Color(0xFF80DEEA),
-    onTertiary = Color.Black,
-    tertiaryContainer = Color(0xFFB2EBF2),            // From light
-    onTertiaryContainer = Color(0xFF004D40),          // From light
-
-    background = Color(0xFF121212),
-    onBackground = Color(0xFFE0E0E0),
-    surface = Color(0xFF1E1E1E),
-    onSurface = Color(0xFFE0E0E0),
+    primary = Color(0xFFFFD147),
+    onPrimary = Color(0xFF000000),
+    background = Color(0xFF0B1023),
+    onBackground = Color(0xFFFFFFFF),
+    surface = Color(0xFF131A36),
+    onSurface = Color(0xFFC2C7D6),
+    secondary = Color(0xFF21294D),
+    onSecondary = Color(0xFFFFFFFF),
+    error = Color(0xFFB00020),
+    outline = Color(0xFF2A3252),
 
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF1976D2),
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFF0D47A1),              // From dark
-    onPrimaryContainer = Color(0xFFE3F2FD),           // From dark
-
-    secondary = Color(0xFF455A64),
-    onSecondary = Color.White,
-    secondaryContainer = Color(0xFF263238),           // From dark
-    onSecondaryContainer = Color(0xFFECEFF1),         // From dark
-
-    tertiary = Color(0xFF0097A7),
-    onTertiary = Color.White,
-    tertiaryContainer = Color(0xFF004D40),            // From dark
-    onTertiaryContainer = Color(0xFFE0F7FA),          // From dark
-
-    background = Color(0xFFF5F5F5),
-    onBackground = Color(0xFF121212),
-    surface = Color.White,
-    onSurface = Color(0xFF1C1B1F),
+    primary = Color(0xFF0057FF),
+    onPrimary = Color(0xFFFFFFFF),
+    background = Color(0xFFF8F9FC),
+    onBackground = Color(0xFF000000),
+    surface = Color(0xFFFFFFFF),
+    onSurface = Color(0xFF000000),
+    secondary = Color(0xFFF1F3F8),
+    onSecondary = Color(0xFF000000),
+    error = Color(0xFFB00020),
+    onError = Color(0xFFFFFFFF),
+    outline = Color(0xFFE4E7EE),
 )
 
 @Composable

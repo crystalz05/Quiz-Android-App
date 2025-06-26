@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,20 +34,22 @@ import com.tyro.quizapplication.R
 
 
 @Composable
-fun ScoreHistoryCard() {
+fun ScoreHistoryCard(
+    onNavigateToHistory : ()-> Unit
+) {
 
     val historyItem = (1..2).toList()
 
     Card(
+        onClick = {onNavigateToHistory()},
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(width = 1.dp, Color.LightGray.copy(alpha = 0.7f)),
         elevation = CardDefaults.cardElevation(),
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp).padding(horizontal = 16.dp)
+            .wrapContentHeight().padding(horizontal = 16.dp)
     ) {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()
-            .background(Color.White.copy(alpha = 0.8f)),
+            .background(MaterialTheme.colorScheme.surface),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -57,18 +60,18 @@ fun ScoreHistoryCard() {
                     verticalAlignment = Alignment.CenterVertically
                     ) {
                     Icon(painter = painterResource(id = R.drawable.baseline_manage_history_24),
-                        contentDescription = "", tint = Color.White,
-                        modifier = Modifier.background(color = colorResource(id = R.color.orange),
+                        contentDescription = "", tint = MaterialTheme.colorScheme.background,
+                        modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground,
                                 shape = RoundedCornerShape(8.dp)).padding(4.dp)
                         )
                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("Recent History", fontWeight = FontWeight.Bold)
-                        Text("Your latest quiz attempts", fontSize = 10.sp, color = Color.Gray)
+                        Text("Recent History", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onBackground)
+                        Text("Your latest quiz attempts", fontSize = 10.sp, color = MaterialTheme.colorScheme.onBackground)
                     }
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
                     historyItem.forEach{ history ->
-                            Column(modifier = Modifier.background(color = Color.LightGray.copy(alpha = 0.3f),
+                            Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.secondary,
                                 shape = RoundedCornerShape(8.dp)).fillMaxWidth().padding(8.dp),
                                 verticalArrangement = Arrangement.Center
                             ) {
@@ -76,16 +79,13 @@ fun ScoreHistoryCard() {
                                     verticalAlignment = Alignment.CenterVertically
                                     ) {
                                     Column {
-                                        Text("Mathematics", fontWeight = FontWeight.SemiBold)
-                                        Text("2h ago", fontSize = 12.sp, color = Color.Gray)
+                                        Text("Mathematics", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSecondary)
+                                        Text("2h ago", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSecondary)
                                     }
-                                    Text("85%", fontWeight = FontWeight.SemiBold, fontSize = 12.sp)
+                                    Text("85%", fontWeight = FontWeight.SemiBold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSecondary)
                                 }
                             }
                     }
-                }
-                Column(modifier = Modifier.weight(1f).fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Tap to view All History", color = Color.Gray)
                 }
             }
 
@@ -99,5 +99,5 @@ fun ScoreHistoryCard() {
 @Preview(showBackground = true)
 @Composable
 fun ScoreHistroyCardPreview(){
-    ScoreHistoryCard()
+    ScoreHistoryCard({})
 }

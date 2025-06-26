@@ -68,18 +68,18 @@ fun QuizScreen(){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 30.dp)
-                    .height(10.dp), color = Color.Black
+                    .height(10.dp), color = MaterialTheme.colorScheme.primary
             )
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 item {
                     Column(modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp)
-                        .background(color = Color.LightGray.copy(alpha = 0.2f),shape = RoundedCornerShape(8.dp)),
+                        .background(color = MaterialTheme.colorScheme.surface,shape = RoundedCornerShape(8.dp)),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text("Time Remaining", color = Color.Gray)
+                        Text("Time Remaining", color = MaterialTheme.colorScheme.onSurface)
                         Text("16s", color = colorResource(id = R.color.green_700), fontSize = 45.sp, fontWeight = FontWeight.Bold)
                     }
                     QuestionItem(
@@ -112,7 +112,10 @@ fun QuestionItem(onPrevious:() -> Unit, onNext: ()-> Unit){
             .fillMaxWidth()
             .padding(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)) {
-            Text("What is the Capital of France?", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Column(modifier = Modifier.height(100.dp)) {
+                Text("What is the Capital of France asdfasdf?",
+                    fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            }
 
             options.forEach{ option ->
 
@@ -124,7 +127,7 @@ fun QuestionItem(onPrevious:() -> Unit, onNext: ()-> Unit){
                         onClick = { onOptionSelected(option) },
                         role = Role.RadioButton
                     )
-                    .border(color = Color.LightGray, width = 1.dp, shape = RoundedCornerShape(8.dp))
+                    .border(color = MaterialTheme.colorScheme.onBackground, width = 1.dp, shape = RoundedCornerShape(8.dp))
                     .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -145,17 +148,19 @@ fun QuestionItem(onPrevious:() -> Unit, onNext: ()-> Unit){
                 OutlinedButton(onClick = {onPrevious()},
                     modifier = Modifier
                         .height(46.dp)
-                        .weight(1f), shape = RoundedCornerShape(8.dp), border = BorderStroke(1.dp, color = Color.Black)
+                        .weight(1f), shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.primary)
                     ) {
-                    Text("Previous", style = MaterialTheme.typography.titleMedium, color = Color.Black)
+                    Text("Previous", style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary)
 
                 }
                 Button(onClick = {onNext()},modifier = Modifier
                     .height(46.dp)
                     .weight(1f), shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black))
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary))
                 {
-                    Text("Next", style = MaterialTheme.typography.titleMedium)
+                    Text("Next", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
 

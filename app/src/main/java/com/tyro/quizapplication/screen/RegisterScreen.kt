@@ -29,6 +29,7 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -76,7 +77,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
     val emailVerifiedResult by authViewModel.emailVerified.observeAsState()
     val showPopUp = remember { mutableStateOf(false) }
     val context = LocalContext.current
-
+    val isLoading = authViewModel.isLoading.value
 
     LaunchedEffect(emailVerifiedResult) {
         if (emailVerifiedResult?.isSuccess == true) {
@@ -85,6 +86,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
             onNavToHomeScreen()
         }
     }
+
 
     Scaffold() { innerPadding ->
         Column(
@@ -99,6 +101,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.surname,
+                    maxLines = 1,
                     onValueChange = { viewModel.surname = it },
                     leadingIcon = {
                         Icon(
@@ -112,6 +115,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.firstName,
+                    maxLines = 1,
                     onValueChange = { viewModel.firstName = it },
                     leadingIcon = {
                         Icon(
@@ -126,6 +130,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.email,
+                    maxLines = 1,
                     onValueChange = { viewModel.email = it },
                     leadingIcon = {
                         Icon(
@@ -140,6 +145,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.password,
+                    maxLines = 1,
                     onValueChange = { viewModel.password = it },
                     leadingIcon = {
                         Icon(
@@ -167,6 +173,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = viewModel.confirmPassword,
+                    maxLines = 1,
                     onValueChange = { viewModel.confirmPassword = it },
                     leadingIcon = {
                         Icon(
@@ -180,8 +187,6 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Button(onClick = {
-                    showPopUp.value = true
-
                     if(viewModel.surname.isEmpty()||
                         viewModel.firstName.isEmpty()||
                         viewModel.email.isEmpty()||
@@ -191,12 +196,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                     }else if(!viewModel.password.equals(viewModel.confirmPassword)){
                         Toast.makeText(context, "passwords do not match", Toast.LENGTH_LONG).show()
                     }else{
-
-                        authViewModel.signUp(viewModel.email, viewModel.password, viewModel.surname, viewModel.firstName)
-                        viewModel.email = ""
-                        viewModel.password = ""
-                        viewModel.surname = ""
-                        viewModel.firstName = ""
+                        authViewModel.signUp(viewModel.email.trim(), viewModel.password, viewModel.surname, viewModel.firstName)
                         showPopUp.value = true
                     }
 
@@ -204,45 +204,50 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                     Text("Register")
                 }
                 TextButton(onClick = { onNavToLogin() }) {
-                    Text("Already have an account, Login")
+                    Text("Already have an account, Login", color = MaterialTheme.colorScheme.onBackground)
                 }
 
             }
-
+            if (isLoading) {
+                Box(
+                    modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background.copy(alpha = 0.3f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
         }
         if (showPopUp.value) {
 
-            VerifyEmailPopUP(onClose = { showPopUp.value = false }, onVerifyClicked = {
-                authViewModel.checkEmailVerification()
-            })
+            VerifyEmailPopUP(authViewModel = authViewModel,
+                viewModel = viewModel,
+                onClose = { showPopUp.value = false },
+                onVerifyClicked = {authViewModel.checkEmailVerification()}
+            )
         }
     }
 
 }
-
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview(){
     RegisterScreen(viewModel = QuizAppViewModel(), authViewModel = AuthViewModel(),{}, {})
+    VerifyEmailPopUP(authViewModel = AuthViewModel(), viewModel = QuizAppViewModel(), {},{})
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VerifyEmailPopUP(
+    authViewModel: AuthViewModel,
+    viewModel: QuizAppViewModel,
     onClose: ()-> Unit,
     onVerifyClicked: ()-> Unit
 ){
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .blur(8.dp)
-            .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.9f))
-    )
 
     BasicAlertDialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false),
-        modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(32.dp)
+        modifier = Modifier.padding(32.dp)
         ) {
 
         Column(modifier = Modifier.fillMaxWidth()
@@ -258,9 +263,9 @@ fun VerifyEmailPopUP(
             Text("Verify your email address", fontWeight = FontWeight.SemiBold, fontSize = 16.sp,
                 color = MaterialTheme.colorScheme.primary)
             Text("We've sent an email to:", color = MaterialTheme.colorScheme.secondary)
-            Text("mikebingp@gmail.com", color = MaterialTheme.colorScheme.primary)
+            Text(text = viewModel.email, color = MaterialTheme.colorScheme.primary)
 
-            Column(Modifier.border(width = 1.dp, shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.secondaryContainer)
+            Column(Modifier
                 .background(shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.background).padding(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -272,7 +277,9 @@ fun VerifyEmailPopUP(
                     Text("Check Verification", color = MaterialTheme.colorScheme.primary)
                 })
 
-                OutlinedButton(onClick = {}, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(5.dp),
+                OutlinedButton(onClick = {
+                    authViewModel.resendVerificationEmail({},{})
+                }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(5.dp),
                     border = BorderStroke(1.dp, color = Color.Transparent), content = {
                     Icon(imageVector = Icons.Default.Refresh, contentDescription = "", tint = MaterialTheme.colorScheme.primary)
                     Text("Resend Email", color = MaterialTheme.colorScheme.primary)

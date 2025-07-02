@@ -2,6 +2,8 @@
 .gradle
 /local.properties
 /.idea/caches
+/.idea/
+*.iml
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
@@ -14,3 +16,4 @@
 .cxx
 local.properties
 serviceAccountKey.json
+/app/google-services.json

@@ -1,0 +1,91 @@
+id,questionText,difficulty,type,options,correctAnswerIndex
+g1,What is the primary color wheel used in design?,easy,graphics,"[""RGB"", ""CMYK"", ""RYB"", ""Grayscale""]",2
+g2,What does RGB stand for in graphic design?,easy,graphics,"[""Red, Green, Blue"", ""Red, Gray, Black"", ""Rose, Gold, Brown"", ""Random Gradient Blend""]",0
+g3,Which tool is commonly used to select a specific area in Adobe Photoshop?,easy,graphics,"[""Brush"", ""Lasso"", ""Eraser"", ""Pen""]",1
+g4,What is the term for the space between letters in typography?,easy,graphics,"[""Leading"", ""Kerning"", ""Tracking"", ""Alignment""]",1
+g5,Which file format supports transparency?,easy,graphics,"[""JPEG"", ""PNG"", ""BMP"", ""GIF""]",1
+g6,What is the purpose of a mood board in graphic design?,easy,graphics,"[""Organize files"", ""Inspire design ideas"", ""Edit images"", ""Print designs""]",1
+g7,Which Adobe software is primarily used for vector graphics?,easy,graphics,"[""Photoshop"", ""Illustrator"", ""InDesign"", ""Premiere""]",1
+g8,What is the term for the visual weight distribution in a design?,easy,graphics,"[""Balance"", ""Contrast"", ""Alignment"", ""Proximity""]",0
+g9,Which color model is used for print design?,easy,graphics,"[""RGB"", ""CMYK"", ""HSB"", ""LAB""]",1
+g10,What is a sans-serif font?,easy,graphics,"[""A font with serifs"", ""A font without serifs"", ""A handwritten font"", ""A decorative font""]",1
+g11,What does DPI stand for in printing?,easy,graphics,"[""Dots Per Inch"", ""Designs Per Image"", ""Digital Print Index"", ""Dots Per Image""]",0
+g12,Which tool in graphic design software is used to draw smooth curves?,easy,graphics,"[""Brush"", ""Pen"", ""Eraser"", ""Clone""]",1
+g13,What is the term for the arrangement of elements in a design?,easy,graphics,"[""Contrast"", ""Composition"", ""Alignment"", ""Hierarchy""]",1
+g14,Which file format is best for high-quality print images?,easy,graphics,"[""JPEG"", ""PNG"", ""TIFF"", ""GIF""]",2
+g15,What is the purpose of a grid in graphic design?,easy,graphics,"[""Add color"", ""Organize layout"", ""Edit photos"", ""Create patterns""]",1
+g16,Which color is considered a neutral color in design?,easy,graphics,"[""Red"", ""Blue"", ""White"", ""Green""]",2
+g17,What is the term for the size and spacing of text lines?,easy,graphics,"[""Kerning"", ""Leading"", ""Tracking"", ""Baseline""]",1
+g18,Which software is used for creating page layouts?,easy,graphics,"[""Photoshop"", ""Illustrator"", ""InDesign"", ""After Effects""]",2
+g19,"What does the term ""opacity"" refer to in graphic design?",easy,graphics,"[""Brightness"", ""Transparency"", ""Saturation"", ""Contrast""]",1
+g20,Which principle emphasizes differences between elements?,easy,graphics,"[""Balance"", ""Contrast"", ""Alignment"", ""Repetition""]",1
+g21,What is a vector graphic?,easy,graphics,"[""Pixel-based image"", ""Scalable image"", ""Compressed image"", ""Animated image""]",1
+g22,Which color combination creates a monochromatic scheme?,easy,graphics,"[""Red and Blue"", ""Shades of Blue"", ""Red and Green"", ""Blue and Yellow""]",1
+g23,What is the term for the visual path created by design elements?,easy,graphics,"[""Flow"", ""Rhythm"", ""Balance"", ""Contrast""]",0
+g24,Which tool is used to fill an area with color in design software?,easy,graphics,"[""Pen"", ""Bucket"", ""Brush"", ""Eraser""]",1
+g25,What is the purpose of a logo in graphic design?,easy,graphics,"[""Add decoration"", ""Identify a brand"", ""Create patterns"", ""Edit images""]",1
+g26,Which file format is commonly used for web images?,easy,graphics,"[""TIFF"", ""JPEG"", ""BMP"", ""EPS""]",1
+g27,What is the term for the overall look of a design?,easy,graphics,"[""Style"", ""Contrast"", ""Alignment"", ""Proximity""]",0
+g28,Which color model is used for digital screens?,easy,graphics,"[""CMYK"", ""RGB"", ""Pantone"", ""Grayscale""]",1
+g29,What is the term for the space around design elements?,easy,graphics,"[""Negative space"", ""Alignment"", ""Contrast"", ""Balance""]",0
+g30,Which font type is best for formal documents?,easy,graphics,"[""Sans-serif"", ""Script"", ""Serif"", ""Decorative""]",2
+g31,What is the rule of thirds in design composition?,medium,graphics,"[""Dividing an image into nine equal parts"", ""Using three colors"", ""Aligning elements in thirds"", ""Scaling images by thirds""]",0
+g32,Which blending mode in Photoshop darkens the base color?,medium,graphics,"[""Screen"", ""Overlay"", ""Multiply"", ""Lighten""]",2
+g33,What is the purpose of a style guide in graphic design?,medium,graphics,"[""Edit images"", ""Ensure design consistency"", ""Create animations"", ""Manage files""]",1
+g34,Which principle involves repeating elements to create unity?,medium,graphics,"[""Contrast"", ""Repetition"", ""Alignment"", ""Proximity""]",1
+g35,What is the difference between kerning and tracking?,medium,graphics,"[""Kerning adjusts line spacing"", ""Tracking adjusts letter spacing"", ""Kerning adjusts individual letter pairs"", ""Tracking adjusts font size""]",2
+g36,Which color scheme uses colors opposite on the color wheel?,medium,graphics,"[""Monochromatic"", ""Analogous"", ""Complementary"", ""Triadic""]",2
+g37,What is the purpose of a mockup in graphic design?,medium,graphics,"[""Edit photos"", ""Show design in context"", ""Create animations"", ""Manage fonts""]",1
+g38,Which Adobe tool is best for creating motion graphics?,medium,graphics,"[""Photoshop"", ""Illustrator"", ""After Effects"", ""InDesign""]",2
+g39,What is the golden ratio in design?,medium,graphics,"[""1:1"", ""1.618:1"", ""2:1"", ""3:2""]",1
+g40,Which file format preserves vector data in Adobe Illustrator?,medium,graphics,"[""JPEG"", ""PNG"", ""AI"", ""GIF""]",2
+g41,What is the purpose of typography hierarchy?,medium,graphics,"[""Adjust colors"", ""Guide viewer attention"", ""Edit images"", ""Create patterns""]",1
+g42,"Which color model uses hue,  saturation,  and brightness?",medium,graphics,"[""RGB"", ""CMYK"", ""HSB"", ""Pantone""]",2
+g43,What is the term for a design that adapts to different screen sizes?,medium,graphics,"[""Fixed design"", ""Responsive design"", ""Static design"", ""Vector design""]",1
+g44,Which principle ensures elements are visually connected?,medium,graphics,"[""Balance"", ""Contrast"", ""Alignment"", ""Proximity""]",2
+g45,What is the purpose of a color palette in design?,medium,graphics,"[""Create animations"", ""Ensure color consistency"", ""Edit photos"", ""Manage fonts""]",1
+g46,Which tool in Photoshop is used to remove blemishes?,medium,graphics,"[""Clone Stamp"", ""Brush"", ""Eraser"", ""Pen""]",0
+g47,What is the difference between raster and vector graphics?,medium,graphics,"[""Raster is scalable"", ""Vector is pixel-based"", ""Raster is pixel-based"", ""Vector is animated""]",2
+g48,Which color scheme uses three evenly spaced colors?,medium,graphics,"[""Monochromatic"", ""Analogous"", ""Complementary"", ""Triadic""]",3
+g49,What is the purpose of a wireframe in design?,medium,graphics,"[""Add color"", ""Plan layout structure"", ""Edit images"", ""Create animations""]",1
+g50,Which font pairing is most effective for contrast?,medium,graphics,"[""Serif and Serif"", ""Sans-serif and Script"", ""Serif and Sans-serif"", ""Script and Script""]",2
+g51,What is the term for the emotional impact of a design?,medium,graphics,"[""Mood"", ""Contrast"", ""Balance"", ""Alignment""]",0
+g52,Which Photoshop feature adjusts image lighting?,medium,graphics,"[""Layers"", ""Curves"", ""Brushes"", ""Filters""]",1
+g53,What is the purpose of a design brief?,medium,graphics,"[""Edit images"", ""Define project goals"", ""Create animations"", ""Manage fonts""]",1
+g54,Which principle uses size to show importance?,medium,graphics,"[""Contrast"", ""Hierarchy"", ""Balance"", ""Proximity""]",1
+g55,What is the term for a design element that draws attention?,medium,graphics,"[""Focal point"", ""Alignment"", ""Contrast"", ""Balance""]",0
+g56,Which file format is best for animations on the web?,medium,graphics,"[""JPEG"", ""PNG"", ""GIF"", ""TIFF""]",2
+g57,What is the purpose of a drop shadow in design?,medium,graphics,"[""Add depth"", ""Change color"", ""Edit text"", ""Create patterns""]",0
+g58,Which color is associated with calmness in design?,medium,graphics,"[""Red"", ""Blue"", ""Yellow"", ""Orange""]",1
+g59,What is the term for the arrangement of text and images?,medium,graphics,"[""Layout"", ""Contrast"", ""Balance"", ""Proximity""]",0
+g60,Which tool in Illustrator creates precise shapes?,medium,graphics,"[""Brush"", ""Pen"", ""Shape"", ""Eraser""]",2
+g61,What is the Gestalt principle of figure-ground in design?,hard,graphics,"[""Separating foreground and background"", ""Repeating elements"", ""Aligning elements"", ""Contrasting colors""]",0
+g62,Who is considered a pioneer of modern graphic design?,hard,graphics,"[""Andy Warhol"", ""Paul Rand"", ""Vincent van Gogh"", ""Claude Monet""]",1
+g63,What is the purpose of a ligature in typography?,hard,graphics,"[""Adjust line spacing"", ""Combine characters"", ""Change font size"", ""Add color""]",1
+g64,Which design movement emphasized clean lines and simplicity?,hard,graphics,"[""Art Nouveau"", ""Bauhaus"", ""Baroque"", ""Rococo""]",1
+g65,What is the difference between additive and subtractive color mixing?,hard,graphics,"[""Additive is for print"", ""Subtractive is for screens"", ""Additive is for screens"", ""Subtractive is for vectors""]",2
+g66,Which Photoshop feature creates non-destructive edits?,hard,graphics,"[""Layers"", ""Filters"", ""Brushes"", ""Gradients""]",0
+g67,What is the term for a design that evokes a specific time period?,hard,graphics,"[""Retro"", ""Modern"", ""Abstract"", ""Minimalist""]",0
+g68,Which color theory concept explains color harmony?,hard,graphics,"[""Color wheel"", ""Color contrast"", ""Color balance"", ""Color hierarchy""]",0
+g69,What is the purpose of a clipping mask in design software?,hard,graphics,"[""Hide parts of an image"", ""Change colors"", ""Add text"", ""Create animations""]",0
+g70,Which design principle is based on human perception of patterns?,hard,graphics,"[""Gestalt"", ""Contrast"", ""Balance"", ""Hierarchy""]",0
+g71,What is the significance of the Pantone Matching System?,hard,graphics,"[""Standardizes colors"", ""Edits images"", ""Creates fonts"", ""Manages layouts""]",0
+g72,"Which designer created the iconic ""I Love NY"" logo?",hard,graphics,"[""Milton Glaser"", ""Saul Bass"", ""Paul Rand"", ""Massimo Vignelli""]",0
+g73,What is the term for a design that prioritizes function over form?,hard,graphics,"[""Minimalism"", ""Functionalism"", ""Abstract"", ""Surrealism""]",1
+g74,Which file format is best for scalable logos?,hard,graphics,"[""JPEG"", ""PNG"", ""SVG"", ""GIF""]",2
+g75,What is the purpose of a design system?,hard,graphics,"[""Create animations"", ""Standardize design components"", ""Edit photos"", ""Manage fonts""]",1
+g76,Which Photoshop tool adjusts specific color ranges?,hard,graphics,"[""Hue/Saturation"", ""Curves"", ""Levels"", ""Gradient""]",0
+g77,What is the term for a design inspired by organic shapes?,hard,graphics,"[""Geometric"", ""Biomorphic"", ""Abstract"", ""Minimalist""]",1
+g78,Which design movement used bold colors and geometric shapes?,hard,graphics,"[""Art Deco"", ""Rococo"", ""Impressionism"", ""Cubism""]",0
+g79,What is the purpose of a smart object in Photoshop?,hard,graphics,"[""Add text"", ""Preserve original data"", ""Change colors"", ""Create animations""]",1
+g80,Which principle ensures a design is easy to navigate?,hard,graphics,"[""Usability"", ""Contrast"", ""Balance"", ""Proximity""]",0
+g81,What is the term for a typefaceƒ??s thickness variation?,hard,graphics,"[""Weight"", ""Style"", ""Kerning"", ""Leading""]",0
+g82,Which designer is known for the Apple logo?,hard,graphics,"[""Rob Janoff"", ""Paul Rand"", ""Saul Bass"", ""Milton Glaser""]",0
+g83,What is the purpose of a gradient map in Photoshop?,hard,graphics,"[""Adjust lighting"", ""Map colors to tones"", ""Create shapes"", ""Add text""]",1
+g84,Which color scheme uses four colors in a rectangle on the color wheel?,hard,graphics,"[""Monochromatic"", ""Complementary"", ""Tetradic"", ""Analogous""]",2
+g85,What is the term for a design that conveys a message without words?,hard,graphics,"[""Iconography"", ""Typography"", ""Layout"", ""Composition""]",0
+g86,Which design software supports 3D modeling?,hard,graphics,"[""Photoshop"", ""Illustrator"", ""Blender"", ""InDesign""]",2
+g87,What is the purpose of a design critique?,hard,graphics,"[""Edit images"", ""Provide feedback"", ""Create animations"", ""Manage fonts""]",1
+g88,Which design principle emphasizes user experience?,hard,graphics,"[""Aesthetics"", ""Functionality"", ""Contrast"", ""Balance""]",1
+g89,What is the term for a design that uses minimal elements?,hard,graphics,"[""Minimalism"", ""Surrealism"", ""Abstract"", ""Functionalism""]",0
+g90,Which color theory concept explains color temperature?,hard,graphics,"[""Warm and cool colors"", ""Complementary colors"", ""Monochromatic colors"", ""Triadic colors""]",0

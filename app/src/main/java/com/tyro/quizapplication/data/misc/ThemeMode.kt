@@ -1,4 +1,7 @@
 package com.tyro.quizapplication.data.misc
 
-class ThemeMode {
+enum class ThemeMode {
+    LIGHT,
+    DARK,
+    SYSTEM
 }

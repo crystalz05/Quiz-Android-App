@@ -1,5 +1,7 @@
 package com.tyro.quizapplication.screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -27,6 +29,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,6 +45,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,12 +60,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.data.misc.formatTimeStamp
+import com.tyro.quizapplication.data.misc.toTitleCase
+import com.tyro.quizapplication.viewmodel.AuthViewModel
+import com.tyro.quizapplication.viewmodel.QuizResultViewModel
 import kotlin.math.exp
 
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HistoryScreen(
+    authViewModel: AuthViewModel,
+    quizResultViewModel: QuizResultViewModel,
     navigateBack:()->Unit
 ){
 
@@ -73,6 +85,8 @@ fun HistoryScreen(
     var filterExpanded by remember { mutableStateOf(false) }
     val filterOptions = listOf("Subject")
     var selectedFilterOption by remember { mutableStateOf(filterOptions[0]) }
+
+    val historyData by quizResultViewModel.quizResult.collectAsState()
 
     Scaffold(
         topBar = {
@@ -150,7 +164,7 @@ fun HistoryScreen(
             LazyColumn(modifier = Modifier.padding(horizontal = 4.dp),
                 ) {
 
-                items(historyItem){ item ->
+                items(historyData.sortedByDescending {it.completedAt}){ item ->
                     Card(
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier
@@ -166,16 +180,16 @@ fun HistoryScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    Text("Mathematics", fontWeight = FontWeight.SemiBold, fontSize = 18.sp, color = MaterialTheme.colorScheme.onSurface)
+                                    Text(item.quizType.toTitleCase(), fontWeight = FontWeight.SemiBold, fontSize = 18.sp, color = MaterialTheme.colorScheme.onSurface)
                                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                        Text("2h ago ", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSecondary)
-                                        Text("15/20 correct", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
+                                        Text(formatTimeStamp(item.completedAt), fontSize = 14.sp, color = MaterialTheme.colorScheme.onSecondary)
+                                        Text("- ${item.correctAnswers}/${item.totalQuestions} correct", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
                                     }
                                 }
                                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background,
                                     shape = RoundedCornerShape(10.dp)).padding(vertical = 4.dp, horizontal = 8.dp)
                                     ){
-                                    Text("85%", color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                                    Text("${item.score}%", color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
                                 }
                             }
                         }
@@ -189,8 +203,8 @@ fun HistoryScreen(
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HistoryScreenPreview(){
-    HistoryScreen({})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HistoryScreenPreview(){
+//    HistoryScreen({})
+//}

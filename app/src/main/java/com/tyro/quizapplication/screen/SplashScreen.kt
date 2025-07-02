@@ -12,6 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,25 +24,28 @@ import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.auth.AuthState
 import com.tyro.quizapplication.navigation.Screen
 import com.tyro.quizapplication.viewmodel.AuthViewModel
 import kotlinx.coroutines.tasks.await
 
 @Composable
 fun SplashScreen(authViewModel: AuthViewModel, onSplashFinished: (String) -> Unit) {
-    LaunchedEffect(Unit) {
-        delay(4000L) // Give time for Firebase Auth + Network
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            user.reload().await()
-            if (user.isEmailVerified) {
+
+    val authState by authViewModel.authState.collectAsState()
+
+    LaunchedEffect(authState) {
+        authViewModel.checkAuthStatus()
+        delay(1000L) // Give time for Firebase Auth + Network
+        when (authState) {
+            is AuthState.Verified -> {
+                authViewModel.checkEmailVerification()
                 authViewModel.fetchCurrentUser()
                 onSplashFinished(Screen.HomeScreen.route)
-            } else {
+            }
+            else -> {
                 onSplashFinished(Screen.LoginScreen.route)
             }
-        } else {
-            onSplashFinished(Screen.LoginScreen.route)
         }
     }
 

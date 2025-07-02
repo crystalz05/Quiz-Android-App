@@ -13,22 +13,21 @@ import com.tyro.quizapplication.injection.Injection
 import kotlinx.coroutines.launch
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
+import com.tyro.quizapplication.auth.AuthState
+import com.tyro.quizapplication.data.misc.QuizGraph
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
 
 
-class AuthViewModel(): ViewModel() {
-
-    private val _userRepository: UserRepository
+class AuthViewModel(private val _userRepository: UserRepository = QuizGraph.userRepository): ViewModel() {
 
     private val _currentUser = MutableLiveData<Result<User>?>()
     val currentUser: MutableLiveData<Result<User>?> = _currentUser
 
     private val _currentUserDetails = MutableStateFlow(User())
     val currentUserDetails: StateFlow<User> = _currentUserDetails.asStateFlow()
-
 
     private val _authResult = MutableLiveData<Result<Boolean>?>()
     val authResult:LiveData<Result<Boolean>?> get() = _authResult
@@ -38,18 +37,49 @@ class AuthViewModel(): ViewModel() {
 
     val isUserLoggedIn = mutableStateOf(FirebaseAuth.getInstance().currentUser != null)
 
-    val isLoading = mutableStateOf(false)
+    private val _isUserLoading = MutableStateFlow(false)
+    val isUserLoading: StateFlow<Boolean> = _isUserLoading
 
-    init{
-        _userRepository = UserRepository(
-            FirebaseAuth.getInstance(),
-            Injection.instance()
-        )
+    private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
+    val authState : StateFlow<AuthState> = _authState
+
+    private val _hasNavigated = MutableStateFlow(false)
+    val hasNavigated: StateFlow<Boolean> = _hasNavigated
+
+    init {
+        checkAuthStatus()
+    }
+
+    fun hasNavigated(){
+        _hasNavigated.value = true
+    }
+
+    fun resetHasNavigated(){
+        _hasNavigated.value = false
+    }
+
+    fun checkAuthStatus(){
+        val fireBaseUser = FirebaseAuth.getInstance().currentUser
+
+        when{
+            fireBaseUser == null -> {
+                _authState.value = AuthState.LoggedOut
+            }
+            fireBaseUser.isAnonymous -> {
+                _authState.value = AuthState.Guest
+            }
+            fireBaseUser.isEmailVerified -> {
+                _authState.value = AuthState.Verified
+            }
+            else -> {
+                _authState.value = AuthState.Unverified
+            }
+        }
     }
 
     fun signUp(email: String, password: String, surname: String, firstname: String){
         viewModelScope.launch {
-            isLoading.value = true
+            _isUserLoading.value = true
 
             val result = _userRepository.signUp(email, password, surname, firstname)
             _authResult.value = result
@@ -57,35 +87,37 @@ class AuthViewModel(): ViewModel() {
                 isUserLoggedIn.value = false
                 fetchCurrentUser()
             }
-            isLoading.value = false
+            _isUserLoading.value = false
         }
     }
 
     fun logIn(email: String, password: String) {
         viewModelScope.launch {
-            isLoading.value = true
+            _isUserLoading.value = true
             val result = _userRepository.signIn(email, password)
             _authResult.value = result
             if(result.isSuccess){
                 isUserLoggedIn.value = true
                 fetchCurrentUser()
             }
-            isLoading.value = false
+            _isUserLoading.value = false
         }
     }
     fun checkEmailVerification(){
         viewModelScope.launch {
+            _authState.value = AuthState.Loading
             val result = _userRepository.checkEmailVerified()
-            _emailVerified.value = result
 
-            if (result.isSuccess) {
-                isUserLoggedIn.value = true
-                fetchCurrentUser()
+            _authState.value = when {
+                FirebaseAuth.getInstance().currentUser?.isAnonymous == true -> AuthState.Guest
+                result.isSuccess -> AuthState.Verified
+                else -> AuthState.Unverified
             }
         }
     }
 
     fun fetchCurrentUser(){
+        _isUserLoading.value = true
         viewModelScope.launch {
             val result = _userRepository.getCurrentUser()
             if (result.isSuccess) {
@@ -97,6 +129,7 @@ class AuthViewModel(): ViewModel() {
                 val exception = result.exceptionOrNull()
                 Log.e("AuthViewModel", "Failed to fetch user", exception)
             }
+            _isUserLoading.value = false
         }
     }
 
@@ -120,15 +153,18 @@ class AuthViewModel(): ViewModel() {
     }
 
     fun logout(){
-        isLoading.value = true
+        FirebaseAuth.getInstance().signOut()
+        _authState.value = AuthState.LoggedOut
+
+        _isUserLoading.value = true
         _userRepository.logout()
         isUserLoggedIn.value = false
         _currentUser.value = null
         _currentUserDetails.value = User()
         _emailVerified.value = null
         _authResult.value = null
-        isLoading.value = false
-
+        _isUserLoading.value = false
+        _hasNavigated.value = false
     }
 
     fun resetPassword(
@@ -146,6 +182,14 @@ class AuthViewModel(): ViewModel() {
         }
     }
 
+    fun updateScoreAndQuiz(score: Long){
+        viewModelScope.launch {
+            _userRepository.updateScoreAndQuiz(score)
+        }
+    }
+
+
+
     fun clearAuthResult() {
         _authResult.value = null
     }
@@ -156,16 +200,8 @@ class AuthViewModel(): ViewModel() {
 
     fun loginAsGuest(){
         viewModelScope.launch {
-            isLoading.value = true
-
             val result = _userRepository.loginAsGuest()
-            _authResult.value = result
-
-            if(result.isSuccess){
-                isUserLoggedIn.value = true
-                fetchCurrentUser()
-            }
-            isLoading.value = false
+            _authState.value = if (result.isSuccess) AuthState.Guest else AuthState.LoggedOut
         }
     }
 

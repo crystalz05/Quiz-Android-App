@@ -1,4 +1,4 @@
-package com.tyro.quizapplication.misc
+package com.tyro.quizapplication.data.misc
 
 import androidx.room.TypeConverter
 

@@ -1,0 +1,91 @@
+id,questionText,difficulty,type,options,correctAnswerIndex
+e1,"What is the plural form of ""cat""?",easy,english,"[""Cats"", ""Cates"", ""Cat's"", ""Cats'""]",0
+e2,"Which word is a synonym for ""big""?",easy,english,"[""Small"", ""Large"", ""Tiny"", ""Short""]",1
+e3,"What is the past tense of ""run""?",easy,english,"[""Ran"", ""Run"", ""Running"", ""Runned""]",0
+e4,Which sentence is correct?,easy,english,"[""She go to school."", ""She goes to school."", ""She going to school."", ""She gone to school.""]",1
+e5,What is an adjective?,easy,english,"[""A naming word"", ""A describing word"", ""An action word"", ""A connecting word""]",1
+e6,"What is the opposite of ""hot""?",easy,english,"[""Warm"", ""Cold"", ""Cool"", ""Hotter""]",1
+e7,Which word is a noun?,easy,english,"[""Run"", ""Big"", ""Table"", ""Quickly""]",2
+e8,What is the correct spelling?,easy,english,"[""Recieve"", ""Receive"", ""Receeve"", ""Recive""]",1
+e9,Which is a complete sentence?,easy,english,"[""The dog."", ""The dog runs."", ""Runs fast."", ""In the park.""]",1
+e10,"What is the singular form of ""children""?",easy,english,"[""Child"", ""Childs"", ""Children"", ""Childes""]",0
+e11,"Which word means ""happy""?",easy,english,"[""Sad"", ""Joyful"", ""Angry"", ""Tired""]",1
+e12,"What is the past tense of ""go""?",easy,english,"[""Goes"", ""Going"", ""Went"", ""Gone""]",2
+e13,Which word is a verb?,easy,english,"[""House"", ""Jump"", ""Blue"", ""Soft""]",1
+e14,What punctuation ends a declarative sentence?,easy,english,"[""Comma"", ""Period"", ""Question mark"", ""Exclamation point""]",1
+e15,Which word is an adverb?,easy,english,"[""Quick"", ""Quickly"", ""Book"", ""Red""]",1
+e16,"What is the plural of ""book""?",easy,english,"[""Books"", ""Bookes"", ""Book's"", ""Books'""]",0
+e17,Which is a pronoun?,easy,english,"[""Table"", ""She"", ""Run"", ""Big""]",1
+e18,"What is a synonym for ""fast""?",easy,english,"[""Slow"", ""Quick"", ""Heavy"", ""Small""]",1
+e19,Which sentence uses correct capitalization?,easy,english,"[""i live in new york."", ""I live in New York."", ""I live in new york."", ""i live in New York.""]",1
+e20,"What is the past tense of ""eat""?",easy,english,"[""Eated"", ""Ate"", ""Eaten"", ""Eating""]",1
+e21,Which word is a preposition?,easy,english,"[""Under"", ""Sing"", ""Happy"", ""Dog""]",0
+e22,"What is the opposite of ""big""?",easy,english,"[""Large"", ""Small"", ""Tall"", ""Wide""]",1
+e23,Which is a complete sentence?,easy,english,"[""The cat sleeps."", ""The cat."", ""Sleeps on the mat."", ""On the mat.""]",0
+e24,"What is the correct spelling of the number ""40""?",easy,english,"[""Fourty"", ""Forty"", ""Fortey"", ""Forte""]",1
+e25,Which word is an adjective?,easy,english,"[""Run"", ""Blue"", ""Sing"", ""Table""]",1
+e26,"What is the plural of ""mouse"" (animal)?",easy,english,"[""Mouses"", ""Mice"", ""Mouse's"", ""Mices""]",1
+e27,Which sentence is in the present tense?,easy,english,"[""She walked to school."", ""She walks to school."", ""She will walk to school."", ""She was walking to school.""]",1
+e28,"What is a synonym for ""sad""?",easy,english,"[""Happy"", ""Unhappy"", ""Angry"", ""Excited""]",1
+e29,Which word is a conjunction?,easy,english,"[""Big"", ""And"", ""Run"", ""Table""]",1
+e30,"What is the past tense of ""sing""?",easy,english,"[""Sang"", ""Sung"", ""Singing"", ""Singed""]",0
+e31,"What is the subject in the sentence: ""The dog chased the cat.""?",medium,english,"[""The cat"", ""The dog"", ""Chased"", ""The""]",1
+e32,"Which word is a synonym for ""difficult""?",medium,english,"[""Easy"", ""Hard"", ""Simple"", ""Clear""]",1
+e33,"What is the correct form of the verb in: ""She ___ to the store yesterday.""?",medium,english,"[""Go"", ""Goes"", ""Went"", ""Going""]",2
+e34,Which sentence uses correct subject-verb agreement?,medium,english,"[""The team are winning."", ""The team is winning."", ""The teams is winning."", ""The team were winning.""]",1
+e35,"What is an antonym for ""generous""?",medium,english,"[""Kind"", ""Selfish"", ""Giving"", ""Helpful""]",1
+e36,Which sentence is in the passive voice?,medium,english,"[""She wrote the book."", ""The book was written by her."", ""She is writing the book."", ""The book is being read.""]",1
+e37,"What is the meaning of the word ""vivid""?",medium,english,"[""Dull"", ""Bright"", ""Quiet"", ""Weak""]",1
+e38,Which sentence uses a comma correctly?,medium,english,"[""I have two cats, and a dog."", ""I have two cats and, a dog."", ""I have, two cats and a dog."", ""I have two cats and a dog""]",0
+e39,"What is the correct plural form of ""deer""?",medium,english,"[""Deers"", ""Deer"", ""Deeres"", ""Deer's""]",1
+e40,"Which word is a gerund in: ""Swimming is fun.""?",medium,english,"[""Is"", ""Fun"", ""Swimming"", ""None""]",2
+e41,What is the main idea of a paragraph?,medium,english,"[""The first sentence"", ""The central focus"", ""The last sentence"", ""The longest sentence""]",1
+e42,Which sentence is in the future tense?,medium,english,"[""She walks to school."", ""She walked to school."", ""She will walk to school."", ""She was walking to school.""]",2
+e43,"What is the meaning of the prefix ""un-""?",medium,english,"[""Not"", ""Again"", ""Before"", ""After""]",0
+e44,"Which word is a synonym for ""cautious""?",medium,english,"[""Careless"", ""Careful"", ""Reckless"", ""Bold""]",1
+e45,"What is the correct form of the possessive pronoun for ""it""?",medium,english,"[""It's"", ""Its"", ""It"", ""Itself""]",1
+e46,Which sentence uses parallel structure?,medium,english,"[""She likes to run, swim, and dancing."", ""She likes running, swimming, and dancing."", ""She likes to run, swimming, and dance."", ""She likes running, to swim, and dance.""]",1
+e47,"What is the meaning of the word ""ambiguous""?",medium,english,"[""Clear"", ""Uncertain"", ""Simple"", ""Direct""]",1
+e48,Which sentence is a compound sentence?,medium,english,"[""I went to the park."", ""I went to the park, and I played soccer."", ""I went to the park quickly."", ""I went to the park yesterday.""]",1
+e49,"What is the correct form of the verb in: ""If I ___ you,  I would study.""?",medium,english,"[""Was"", ""Were"", ""Am"", ""Be""]",1
+e50,"Which word is an antonym for ""ancient""?",medium,english,"[""Old"", ""Modern"", ""Historic"", ""Aged""]",1
+e51,What is the tone of a piece of writing?,medium,english,"[""The main idea"", ""The author's attitude"", ""The sentence structure"", ""The word choice""]",1
+e52,Which sentence uses correct punctuation for a direct quote?,medium,english,"[""She said, I love books."", ""She said, 'I love books.'"", ""'She said I love books.'"", ""She said I love books.""]",1
+e53,"What is the meaning of the suffix ""-less""?",medium,english,"[""Full of"", ""Without"", ""Before"", ""After""]",1
+e54,"Which word is a participle in: ""The broken vase was on the floor.""?",medium,english,"[""Vase"", ""Broken"", ""Floor"", ""Was""]",1
+e55,"What is the correct form of the pronoun in: ""This book belongs to ___.""?",medium,english,"[""Me"", ""I"", ""Myself"", ""Mine""]",0
+e56,Which sentence avoids a dangling modifier?,medium,english,"[""Running fast, the finish line was crossed."", ""Running fast, she crossed the finish line."", ""The finish line was crossed, running fast."", ""She crossed, running fast.""]",1
+e57,"What is a synonym for ""persistent""?",medium,english,"[""Temporary"", ""Determined"", ""Weak"", ""Uncertain""]",1
+e58,Which sentence is in the subjunctive mood?,medium,english,"[""I wish I were taller."", ""I am taller."", ""I was taller."", ""I will be taller.""]",0
+e59,"What is the meaning of the word ""ephemeral""?",medium,english,"[""Lasting"", ""Brief"", ""Permanent"", ""Stable""]",1
+e60,Which sentence uses a semicolon correctly?,medium,english,"[""I have two cats; and a dog."", ""I have two cats; I also have a dog."", ""I have two cats, I also have a dog."", ""I have two cats I also have a dog.""]",1
+e61,"What is the literary device in: ""The wind whispered through the trees.""?",hard,english,"[""Metaphor"", ""Personification"", ""Simile"", ""Alliteration""]",1
+e62,"What is the meaning of the word ""ubiquitous""?",hard,english,"[""Rare"", ""Everywhere"", ""Hidden"", ""Unique""]",1
+e63,Which sentence contains a paradox?,hard,english,"[""Less is more."", ""The sky is blue."", ""I love to read books."", ""The sun rises slowly.""]",0
+e64,What is the rhyme scheme of a Shakespearean sonnet?,hard,english,"[""ABAB BCBC CDCD EE"", ""ABAB CDCD EFEF GG"", ""AABB CCDD EEFF GG"", ""ABBA CDDC EFFE GG""]",1
+e65,What is the term for a reference to another work of literature?,hard,english,"[""Allusion"", ""Metaphor"", ""Symbol"", ""Irony""]",0
+e66,Which sentence uses an oxymoron?,hard,english,"[""The silence was deafening."", ""The room was quiet."", ""The music was loud."", ""The day was sunny.""]",0
+e67,"What is the meaning of the word ""cacophony""?",hard,english,"[""Harmony"", ""Harsh sound"", ""Silence"", ""Melody""]",1
+e68,"Who wrote the novel ""Pride and Prejudice""?",hard,english,"[""Charles Dickens"", ""Jane Austen"", ""Emily Bront"", ""George Eliot""]",1
+e69,What is the literary term for the emotional atmosphere of a work?,hard,english,"[""Theme"", ""Tone"", ""Mood"", ""Plot""]",2
+e70,Which sentence contains dramatic irony?,hard,english,"[""He knew the secret, but she did not."", ""She spoke loudly to the crowd."", ""They both enjoyed the movie."", ""The sun set slowly.""]",0
+e71,"What is the meaning of the word ""anachronism""?",hard,english,"[""Something out of time"", ""Something modern"", ""Something ancient"", ""Something permanent""]",0
+e72,Which poetic form has 14 lines and a volta?,hard,english,"[""Haiku"", ""Sonnet"", ""Limerick"", ""Ode""]",1
+e73,What is the term for a play on words?,hard,english,"[""Pun"", ""Metaphor"", ""Simile"", ""Alliteration""]",0
+e74,"Which author wrote ""The Great Gatsby""?",hard,english,"[""F. Scott Fitzgerald"", ""Ernest Hemingway"", ""William Faulkner"", ""John Steinbeck""]",0
+e75,"What is the meaning of the word ""euphemism""?",hard,english,"[""Harsh word"", ""Polite substitute"", ""Direct term"", ""Technical term""]",1
+e76,Which sentence contains a synecdoche?,hard,english,"[""All hands on deck."", ""The ship sailed smoothly."", ""The sea was calm."", ""The sailors worked hard.""]",0
+e77,What is the term for the repetition of initial consonant sounds?,hard,english,"[""Assonance"", ""Alliteration"", ""Consonance"", ""Rhyme""]",1
+e78,Which work is a dystopian novel by George Orwell?,hard,english,"[""1984"", ""Brave New World"", ""The Handmaid's Tale"", ""Fahrenheit 451""]",0
+e79,"What is the meaning of the word ""juxtaposition""?",hard,english,"[""Similarity"", ""Contrast"", ""Repetition"", ""Exaggeration""]",1
+e80,Which sentence contains verbal irony?,hard,english,"[""'What a beautiful day!', said during a storm."", ""It's a sunny day."", ""I love the rain."", ""The day is warm.""]",0
+e81,What is the term for a long narrative poem?,hard,english,"[""Sonnet"", ""Epic"", ""Limerick"", ""Haiku""]",1
+e82,"Who wrote the play ""Romeo and Juliet""?",hard,english,"[""William Shakespeare"", ""Christopher Marlowe"", ""Ben Jonson"", ""John Milton""]",0
+e83,"What is the meaning of the word ""hyperbole""?",hard,english,"[""Understatement"", ""Exaggeration"", ""Comparison"", ""Repetition""]",1
+e84,Which sentence uses a metaphor?,hard,english,"[""Her eyes were stars."", ""Her eyes twinkled like stars."", ""Her eyes were bright."", ""Her eyes shone brightly.""]",0
+e85,What is the term for the main character's opponent in a story?,hard,english,"[""Protagonist"", ""Antagonist"", ""Narrator"", ""Foil""]",1
+e86,"Which novel begins with the line: ""It was the best of times, it was the worst of times""?",hard,english,"[""A Tale of Two Cities"", ""Great Expectations"", ""Oliver Twist"", ""David Copperfield""]",0
+e87,"What is the meaning of the word ""litotes""?",hard,english,"[""Exaggeration"", ""Understatement"", ""Comparison"", ""Repetition""]",1
+e88,Which literary movement is associated with authors like Wordsworth and Coleridge?,hard,english,"[""Modernism"", ""Romanticism"", ""Realism"", ""Naturalism""]",1
+e89,What is the term for a character who undergoes significant change?,hard,english,"[""Static character"", ""Dynamic character"", ""Flat character"", ""Round character""]",1
+e90,Which sentence contains an allusion?,hard,english,"[""He was a Romeo with the ladies."", ""He loved to read books."", ""He ran very fast."", ""He was tall and strong.""]",0

@@ -1,5 +1,7 @@
 package com.tyro.quizapplication.screen.homescreensmallcomponents
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +23,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,14 +35,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.data.entity.QuizResult
+import com.tyro.quizapplication.data.misc.formatTimeStamp
+import com.tyro.quizapplication.data.misc.toTitleCase
+import com.tyro.quizapplication.viewmodel.QuizResultViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ScoreHistoryCard(
+    recentHistory: List<QuizResult>,
     onNavigateToHistory : ()-> Unit
 ) {
-
-    val historyItem = (1..2).toList()
 
     Card(
         onClick = {onNavigateToHistory()},
@@ -70,7 +78,7 @@ fun ScoreHistoryCard(
                     }
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                    historyItem.forEach{ history ->
+                    recentHistory.sortedByDescending { it.completedAt }.forEach{ history ->
                             Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.secondary,
                                 shape = RoundedCornerShape(8.dp)).fillMaxWidth().padding(8.dp),
                                 verticalArrangement = Arrangement.Center
@@ -79,10 +87,10 @@ fun ScoreHistoryCard(
                                     verticalAlignment = Alignment.CenterVertically
                                     ) {
                                     Column {
-                                        Text("Mathematics", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSecondary)
-                                        Text("2h ago", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSecondary)
+                                        Text(history.quizType.toTitleCase(), fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onSecondary)
+                                        Text(formatTimeStamp(history.completedAt), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSecondary)
                                     }
-                                    Text("85%", fontWeight = FontWeight.SemiBold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSecondary)
+                                    Text("${history.score}%", fontWeight = FontWeight.SemiBold, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSecondary)
                                 }
                             }
                     }
@@ -96,8 +104,8 @@ fun ScoreHistoryCard(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun ScoreHistroyCardPreview(){
-    ScoreHistoryCard({})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ScoreHistroyCardPreview(){
+//    ScoreHistoryCard({})
+//}

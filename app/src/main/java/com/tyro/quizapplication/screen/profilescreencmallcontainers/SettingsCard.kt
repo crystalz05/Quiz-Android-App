@@ -44,12 +44,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.data.misc.ThemeMode
 import com.tyro.quizapplication.viewmodel.ThemeViewModel
 
 @Composable
 fun SettingsCard(themeViewModel: ThemeViewModel){
 
-    val isDarkTheme by themeViewModel.isDarkTheme.collectAsState()
+
+    val themeMode by themeViewModel.themeMode.collectAsState()
     val biometricEnabled = remember { mutableStateOf(false) }
 
     Card(
@@ -57,7 +59,10 @@ fun SettingsCard(themeViewModel: ThemeViewModel){
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Box(modifier = Modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.surface).padding(16.dp),
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.surface)
+            .padding(16.dp),
             contentAlignment = Alignment.Center,
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
@@ -99,8 +104,38 @@ fun SettingsCard(themeViewModel: ThemeViewModel){
                     }
 
                     Switch(
-                        checked = isDarkTheme,
-                        onCheckedChange = { themeViewModel.toggleTheme() },
+                        checked = themeMode == ThemeMode.DARK,
+                        onCheckedChange =
+                            {
+                                themeViewModel.setThemeMode(if (it) ThemeMode.DARK else ThemeMode.LIGHT)
+                            },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            uncheckedThumbColor = Color.Gray,
+                            checkedTrackColor = colorResource(id = R.color.green_700),
+                            uncheckedTrackColor = Color.White,
+                            checkedBorderColor = colorResource(id = R.color.green_700),
+                            uncheckedBorderColor = Color.Gray
+                        )
+                    )
+                }
+                Row(modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(painter = painterResource(id = R.drawable.baseline_color_lens_24),
+                            tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(30.dp),
+                            contentDescription = "Notification")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Use system default theme", fontSize = 16.sp, fontWeight = FontWeight.Medium, color =  MaterialTheme.colorScheme.onSurface)
+                    }
+
+                    Switch(
+                        checked = themeMode == ThemeMode.SYSTEM,
+                        onCheckedChange = { isChecked -> if(isChecked)
+                        {
+                            themeViewModel.useSystemTheme()
+                        }
+                        },
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = Color.White,
                             uncheckedThumbColor = Color.Gray,

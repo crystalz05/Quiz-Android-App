@@ -1,7 +1,10 @@
 package com.tyro.quizapplication.screen
 
 import android.annotation.SuppressLint
+import android.os.Build
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -49,42 +52,59 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
+import com.tyro.quizapplication.auth.AuthState
 import com.tyro.quizapplication.navigation.Screen
+import com.tyro.quizapplication.viewmodel.QuestionViewModel
+import com.tyro.quizapplication.viewmodel.QuizResultViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navController: NavController,
     authViewModel: AuthViewModel,
     profileScreen:()-> Unit,
-    historyScreen:()->Unit
+    historyScreen:()->Unit,
+    questionsViewModel: QuestionViewModel,
+    quizResultViewModel: QuizResultViewModel
 ){
 
     val user by authViewModel.currentUserDetails.collectAsState()
-
     val pagerState = rememberPagerState(pageCount = {4})
+
+    val questionTypes = listOf("mathematics", "computer", "english", "graphics")
 
     val emailVerifiedResult by authViewModel.emailVerified.observeAsState()
     val hasCheckedVerification = remember { mutableStateOf(false) }
+    val historyData by quizResultViewModel.quizResult.collectAsState()
+    val questions by questionsViewModel.questions.collectAsState()
+
+    val authState by authViewModel.authState.collectAsState()
+    val hasNavigated by authViewModel.hasNavigated.collectAsState()
+
+    LaunchedEffect(authState) {
+            if (authState == AuthState.Unverified) {
+                authViewModel.logout()
+                navController.navigate(Screen.LoginScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) { inclusive = true }
+                }
+
+        }
+    }
+
+    LaunchedEffect(user.uid) {
+        if (user.uid.isNotEmpty() && !authViewModel.isAnonymous) {
+            quizResultViewModel.getQuizResultsById(user.uid)
+        }
+    }
 
     LaunchedEffect(Unit) {
-        if (!hasCheckedVerification.value) {
-            authViewModel.checkEmailVerification()
-            hasCheckedVerification.value = true
-        }
+        authViewModel.fetchCurrentUser()
+        questionsViewModel.syncQuestions()
     }
 
-    LaunchedEffect(emailVerifiedResult) {
-        if (emailVerifiedResult?.isSuccess == false) {
-            authViewModel.logout()
-            navController.navigate(Screen.LoginScreen.route) {
-                popUpTo(Screen.HomeScreen.route) { inclusive = true }
-            }
-        }
-    }
-
-    val isLoadingUser = user.firstname.isEmpty() && !authViewModel.isAnonymous
+    val isLoadingUser by authViewModel.isUserLoading.collectAsState()
 
     if (isLoadingUser) {
         Column(
@@ -95,6 +115,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CircularProgressIndicator()
+            authViewModel.fetchCurrentUser()
         }
         return
     }
@@ -134,11 +155,14 @@ fun HomeScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                             item ->
-                        QuizSubjectItem(navController)
-
+                        QuizSubjectItem(
+                            questionsViewModel,
+                            navController,
+                            questionTypes[pagerState.currentPage]
+                        )
                     }
 
-                    ScoreHistoryCard(onNavigateToHistory = {historyScreen()})
+                    ScoreHistoryCard(historyData.sortedBy { it.completedAt }.takeLast(2), onNavigateToHistory = {historyScreen()})
                     AccountProfileCard(authViewModel, onNavigateToProfile = {profileScreen()})
                 }
             }

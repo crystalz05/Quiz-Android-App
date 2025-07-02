@@ -14,17 +14,22 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,15 +41,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.tyro.quizapplication.R
 import com.tyro.quizapplication.navigation.Screen
+import com.tyro.quizapplication.viewmodel.QuestionViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun QuizSubjectItem(
-    navController: NavController
+    questionViewModel: QuestionViewModel,
+    navController: NavController,
+    questionType: String
 ){
-
+    val coroutineScope = rememberCoroutineScope()
     val difficulty = listOf("Easy", "Medium", "Hard")
     val selectedDifficulty = remember { mutableStateOf("Easy") }
-
+//    val questions by questionViewModel.questions.collectAsState()
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -65,9 +75,9 @@ fun QuizSubjectItem(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text("Mathematics", fontWeight = FontWeight.Medium, fontSize = 24.sp,
+                    Text(questionType.uppercase(), fontWeight = FontWeight.Medium, fontSize = 24.sp,
                         color = MaterialTheme.colorScheme.onSecondary)
-                    Text("20 Questions quiz", color = MaterialTheme.colorScheme.onSecondary)
+                    Text("15 Questions Quiz", color = MaterialTheme.colorScheme.onSecondary)
 
                 }
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -91,6 +101,11 @@ fun QuizSubjectItem(
                 Button(modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(5.dp),
                     onClick = {
+                        coroutineScope.launch {
+                            questionViewModel.loadQuestions(
+                                difficulty = selectedDifficulty.value.lowercase(),
+                                type = questionType.lowercase())
+                        }
                         navController.navigate(Screen.QuizScreen.route)
                     }, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)) {
                     Icon(imageVector = Icons.Outlined.PlayArrow, contentDescription = "", tint = MaterialTheme.colorScheme.onPrimary)

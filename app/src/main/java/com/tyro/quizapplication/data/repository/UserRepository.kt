@@ -159,6 +159,24 @@ class UserRepository(
         }
     }
 
+    suspend fun updateScoreAndQuiz(score: Long): Result<Boolean>{
+
+        val uid = auth.currentUser?.uid ?: return Result.failure(Exception("User not authenticated"))
+
+        return try{
+            val userRef = firestore.collection("users").document(uid)
+
+            val updates = mapOf(
+                "totalScore" to com.google.firebase.firestore.FieldValue.increment(score),
+                "quizzesTaken" to com.google.firebase.firestore.FieldValue.increment(1)
+            )
+            userRef.update(updates).await()
+            Result.success(true)
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+
     suspend fun loginAsGuest(): Result<Boolean>{
         return try{
             auth.signInAnonymously().await()

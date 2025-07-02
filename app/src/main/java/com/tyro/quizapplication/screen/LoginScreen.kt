@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -53,7 +54,6 @@ import com.tyro.quizapplication.viewmodel.QuizAppViewModel
 fun LoginScreen(viewModel: QuizAppViewModel,
                 navController: NavController,
                 authViewModel: AuthViewModel,
-                onNavToHomeScreen: () -> Unit,
                 onNavToRegister: () -> Unit){
 
     var passwordVisible by remember { mutableStateOf(false) }
@@ -61,7 +61,7 @@ fun LoginScreen(viewModel: QuizAppViewModel,
     val orientationActivity = context as? Activity
     val result by authViewModel.authResult.observeAsState()
     val snackbarHostState = remember { SnackbarHostState() }
-    val isLoading = authViewModel.isLoading.value
+    val isLoading by authViewModel.isUserLoading.collectAsState()
     orientationActivity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
     LaunchedEffect(result) {
@@ -143,6 +143,7 @@ fun LoginScreen(viewModel: QuizAppViewModel,
                     if(viewModel.email.isEmpty()||viewModel.password.isEmpty()){
                         Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_LONG).show()
                     }else{
+                        authViewModel.resetHasNavigated()
                         authViewModel.logIn(viewModel.email.trim(), viewModel.password.trim())
                         viewModel.clearFields()
                     }
@@ -166,7 +167,10 @@ fun LoginScreen(viewModel: QuizAppViewModel,
                 }
 
                 Spacer(modifier = Modifier.height(30.dp))
-                Button(onClick = {authViewModel.loginAsGuest()},
+                Button(onClick = {
+                    authViewModel.resetHasNavigated()
+                    authViewModel.loginAsGuest()
+                                 },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
                     shape = RoundedCornerShape(4.dp), modifier = Modifier.fillMaxWidth()) {
                     Text("Continue as Guest", color = MaterialTheme.colorScheme.onSecondary)

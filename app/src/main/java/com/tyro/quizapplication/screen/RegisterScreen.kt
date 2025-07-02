@@ -41,6 +41,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -61,7 +62,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.navigation.Screen
 import com.tyro.quizapplication.viewmodel.AuthViewModel
 import com.tyro.quizapplication.viewmodel.QuizAppViewModel
 
@@ -70,20 +73,22 @@ import com.tyro.quizapplication.viewmodel.QuizAppViewModel
 @Composable
 fun RegisterScreen(viewModel: QuizAppViewModel,
                    authViewModel: AuthViewModel,
-                   onNavToHomeScreen: ()-> Unit,
+                   navController: NavController,
                    onNavToLogin:()->Unit){
 
 
     val emailVerifiedResult by authViewModel.emailVerified.observeAsState()
     val showPopUp = remember { mutableStateOf(false) }
     val context = LocalContext.current
-    val isLoading = authViewModel.isLoading.value
+    val isLoading by authViewModel.isUserLoading.collectAsState()
 
     LaunchedEffect(emailVerifiedResult) {
         if (emailVerifiedResult?.isSuccess == true) {
             showPopUp.value = false
             Toast.makeText(context, "Email Verified", Toast.LENGTH_SHORT).show()
-            onNavToHomeScreen()
+            navController.navigate(Screen.HomeScreen.route) {
+                popUpTo(Screen.RegisterScreen.route) { inclusive = true }
+            }
         }
     }
 
@@ -196,6 +201,7 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
                     }else if(!viewModel.password.equals(viewModel.confirmPassword)){
                         Toast.makeText(context, "passwords do not match", Toast.LENGTH_LONG).show()
                     }else{
+                        authViewModel.resetHasNavigated()
                         authViewModel.signUp(viewModel.email.trim(), viewModel.password, viewModel.surname, viewModel.firstName)
                         showPopUp.value = true
                     }
@@ -229,13 +235,13 @@ fun RegisterScreen(viewModel: QuizAppViewModel,
 
 }
 
-@SuppressLint("ViewModelConstructorInComposable")
-@Preview(showBackground = true)
-@Composable
-fun RegisterScreenPreview(){
-    RegisterScreen(viewModel = QuizAppViewModel(), authViewModel = AuthViewModel(),{}, {})
-    VerifyEmailPopUP(authViewModel = AuthViewModel(), viewModel = QuizAppViewModel(), {},{})
-}
+//@SuppressLint("ViewModelConstructorInComposable")
+//@Preview(showBackground = true)
+//@Composable
+//fun RegisterScreenPreview(){
+//    RegisterScreen(viewModel = QuizAppViewModel(), authViewModel = AuthViewModel(), navController, {})
+//    VerifyEmailPopUP(authViewModel = AuthViewModel(), viewModel = QuizAppViewModel(), {},{})
+//}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

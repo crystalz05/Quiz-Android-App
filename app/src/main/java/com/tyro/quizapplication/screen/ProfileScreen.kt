@@ -40,6 +40,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -55,9 +56,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.tyro.quizapplication.R
+import com.tyro.quizapplication.data.entity.QuizResult
 import com.tyro.quizapplication.screen.profilescreencmallcontainers.AccountSettingCard
 import com.tyro.quizapplication.screen.profilescreencmallcontainers.SettingsCard
 import com.tyro.quizapplication.viewmodel.AuthViewModel
+import com.tyro.quizapplication.viewmodel.QuizResultViewModel
 import com.tyro.quizapplication.viewmodel.ThemeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,12 +68,14 @@ import com.tyro.quizapplication.viewmodel.ThemeViewModel
 fun ProfileScreen(
     themeViewModel: ThemeViewModel,
     navController: NavController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    quizResultViewModel: QuizResultViewModel
 ){
 
     val user by authViewModel.currentUserDetails.collectAsState()
-    val isLoading = authViewModel.isLoading.value
+    val isLoading by authViewModel.isUserLoading.collectAsState()
 
+    val averageScore = if (user.quizzesTaken > 0) user.totalScore / user.quizzesTaken else 0
 
     Scaffold(modifier = Modifier
         .fillMaxSize()
@@ -139,6 +144,7 @@ fun ProfileScreen(
                                             tint = colorResource(id = R.color.blue_800),
                                             contentDescription = "Quizes")
                                         Text("Quizzes", fontWeight = FontWeight.Medium)
+                                        Text("${user.quizzesTaken}", fontWeight = FontWeight.Medium)
                                     }
                                 }
                                 Card(modifier = Modifier
@@ -156,7 +162,9 @@ fun ProfileScreen(
                                         Icon(painter = painterResource(id = R.drawable.baseline_stars_24),
                                             tint = colorResource(id = R.color.orange) ,
                                             contentDescription = "Quizes")
-                                        Text("Avg Score", fontWeight = FontWeight.Medium)
+                                        Text("Average", fontWeight = FontWeight.Medium)
+                                        Text("$averageScore", fontWeight = FontWeight.Medium)
+
                                     }
                                 }
                             }
@@ -196,7 +204,7 @@ fun ProfileScreen(
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit",
                                         modifier = Modifier.size(16.dp))
-                                    Text("Edit", color = MaterialTheme.colorScheme.onPrimary)
+                                    Text("Edit Profile Photo", color = MaterialTheme.colorScheme.onPrimary)
                                 }
 
                             }
@@ -233,7 +241,7 @@ fun ProfileScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                AccountSettingCard(authViewModel, navController)
+                AccountSettingCard(authViewModel, quizResultViewModel, navController)
 
                 Spacer(modifier = Modifier.height(8.dp))
 
